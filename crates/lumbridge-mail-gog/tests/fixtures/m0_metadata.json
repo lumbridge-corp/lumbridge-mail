@@ -1,0 +1,34 @@
+{
+  "id": "18f0a1b2c3d4e500",
+  "threadId": "18f0a1b2c3d4e500",
+  "labelIds": [
+    "TRASH",
+    "Label_12"
+  ],
+  "snippet": "Your receipt",
+  "payload": {
+    "partId": "",
+    "mimeType": "text/plain",
+    "filename": "",
+    "headers": [
+      {
+        "name": "From",
+        "value": "Shop <orders@shop.example>"
+      },
+      {
+        "name": "To",
+        "value": "test.user@example.com"
+      },
+      {
+        "name": "Subject",
+        "value": "Your receipt"
+      }
+    ],
+    "body": {
+      "size": 0
+    }
+  },
+  "sizeEstimate": 4200,
+  "historyId": "4000",
+  "internalDate": "1700000000000"
+}

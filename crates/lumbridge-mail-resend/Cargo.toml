@@ -1,0 +1,27 @@
+[package]
+name = "lumbridge-mail-resend"
+version = "0.1.0"
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+publish.workspace = true
+description = "Lumbridge Mail: a Provider for Resend's HTTP API (sent mail with delivery state, scheduled mail, received mail)"
+
+[dependencies]
+lumbridge-mail-core = { path = "../lumbridge-mail-core" }
+async-trait = "0.1"
+# Attachment content for POST /emails.
+base64 = "0.22"
+# The same client and TLS stack as lumbridge-mail-ai (already in the tree). No `query`/`form` features:
+# every query value we send is a number, a fixed word or a checked id.
+reqwest = { version = "0.13", default-features = false, features = ["rustls", "json"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+# Idempotency keys from the draft's local id.
+sha2 = "0.10"
+# `net` and `io-util` are for `fake`, the in-process fake Resend server (ours and the daemon's tests).
+tokio = { version = "1", features = ["fs", "io-util", "macros", "net", "rt", "sync", "time"] }
+
+[dev-dependencies]
+tokio = { version = "1", features = ["fs", "io-util", "macros", "net", "rt", "rt-multi-thread", "sync", "time"] }

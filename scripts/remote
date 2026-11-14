@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+# Build and test on another machine over ssh (a bigger build box), not on this one.
+#
+#   scripts/remote <name> <cargo args...>      e.g.  scripts/remote store test -p lumbridge-mail-store
+#   scripts/remote <name> --sh '<command>'     run a shell command in the remote copy (e.g. a built binary)
+#   scripts/remote <name> --fetch <dir> <path>...   copy built files back (paths in the remote copy, e.g.
+#                                              target/aarch64-unknown-linux-musl/release/lbmail) into <dir> here
+#   scripts/remote <name> zigbuild --release --target aarch64-unknown-linux-musl -p lumbridge-maild \
+#                         --features vendored-dbus       cross-build (cargo-zigbuild); see scripts/remote-arm64
+#
+# Copies this checkout (the worktree you are in) to $HOST:~/build/lumbridge-mail-<name>
+# and runs cargo there, niced, with at most $JOBS jobs. Each name has its own copy and target directory,
+# so parallel builds never wait on each other's locks.
+#
+#   LBMAIL_BUILD_HOST   the ssh host that builds (required; an ~/.ssh/config alias is fine)
+#   JOBS                default 3
+set -euo pipefail
+name=${1:?usage: scripts/remote <name> <cargo args...>}; shift
+host=${LBMAIL_BUILD_HOST:?set LBMAIL_BUILD_HOST to the ssh host that builds}
+jobs=${JOBS:-3}
+root=$(git rev-parse --show-toplevel)
+dest="build/lumbridge-mail-$name"
+if [ "${1:-}" = "--fetch" ]; then
+  # Nothing is copied up or built: only results come back.
+  local_dir=${2:?--fetch <local dir> <remote path>...}; shift 2
+  [ $# -gt 0 ] || { echo "--fetch: name at least one path" >&2; exit 2; }
+  mkdir -p "$local_dir"
+  for p in "$@"; do rsync -a "$host:$dest/$p" "$local_dir/"; done
+  exit 0
+fi
+ssh -o BatchMode=yes "$host" "mkdir -p ~/$dest" </dev/null
+rsync -a --delete --exclude /target --exclude .git "$root/" "$host:$dest/"
+# Some hosts have libxkbcommon-x11 without its dev symlink; the shim lets GPUI link (harmless elsewhere).
+pre='export PATH=$HOME/.local/bin:$HOME/.cargo/bin:$PATH; mkdir -p target/linkshim;
+[ -e /usr/lib/x86_64-linux-gnu/libxkbcommon-x11.so.0 ] && ln -sfn /usr/lib/x86_64-linux-gnu/libxkbcommon-x11.so.0 target/linkshim/libxkbcommon-x11.so;
+export LIBRARY_PATH=$PWD/target/linkshim CARGO_BUILD_JOBS='"$jobs"' CARGO_TERM_COLOR=never;'
+# Postgres mirror tests run only against a throwaway server named here (a DSN on the build host).
+if [ -n "${LUMBRIDGE_MAIL_PG_TEST_URL:-}" ]; then
+  pre="$pre export LUMBRIDGE_MAIL_PG_TEST_URL=$(printf %q "$LUMBRIDGE_MAIL_PG_TEST_URL");"
+fi
+if [ "${1:-}" = "--sh" ]; then
+  shift
+  ssh -o BatchMode=yes "$host" "cd ~/$dest && $pre $*" </dev/null
+else
+  args=$(printf '%q ' "$@")
+  ssh -o BatchMode=yes "$host" "cd ~/$dest && $pre nice -n 15 cargo $args" </dev/null
+fi

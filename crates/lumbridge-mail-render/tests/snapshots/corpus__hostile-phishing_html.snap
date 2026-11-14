@@ -1,0 +1,248 @@
+---
+source: crates/lumbridge-mail-render/tests/corpus.rs
+expression: render_all(name)
+---
+== report ==
+{
+  "remote_images": 0,
+  "remote_blocked": false,
+  "tracking_pixels": 0,
+  "remote_css": 0,
+  "cid_images": 0,
+  "cid_unresolved": 0,
+  "suspicious_links": [
+    {
+      "text": "https://www.bank.example.com/login",
+      "href": "https://login.examp1e-secure.example.net/verify",
+      "kind": {
+        "kind": "text_shows_other_domain",
+        "shown": "www.bank.example.com",
+        "actual": "login.examp1e-secure.example.net"
+      }
+    },
+    {
+      "text": "Sign in",
+      "href": "https://xn--bnk-6cd.example.com/login",
+      "kind": {
+        "kind": "punycode",
+        "host": "xn--bnk-6cd.example.com",
+        "unicode": "bаnk.example.com"
+      }
+    },
+    {
+      "text": "https://bank.example.com",
+      "href": "https://bank.example.com@evil.example.net/login",
+      "kind": {
+        "kind": "userinfo",
+        "actual": "evil.example.net"
+      }
+    },
+    {
+      "text": "Secure portal",
+      "href": "http://192.0.2.44/login",
+      "kind": {
+        "kind": "ip_address",
+        "host": "192.0.2.44"
+      }
+    },
+    {
+      "text": "аpple.com",
+      "href": "https://xn--pple-43d.com/",
+      "kind": {
+        "kind": "punycode",
+        "host": "xn--pple-43d.com",
+        "unicode": "аpple.com"
+      }
+    }
+  ],
+  "removed": {
+    "scripts": 0,
+    "event_handlers": 0,
+    "forms": 0,
+    "frames": 0,
+    "stylesheets": 0,
+    "meta_refresh": 0,
+    "base_tags": 0,
+    "svg": 0,
+    "unsafe_links": 0,
+    "data_uris": 0,
+    "hidden": 0
+  },
+  "truncated": false
+}
+== safe html ==
+
+<p>Your account is on hold. Sign in to restore access:</p>
+<p><a href="https://login.examp1e-secure.example.net/verify" rel="noopener noreferrer nofollow">https://www.bank.example.com/login</a></p>
+<p><a href="https://xn--bnk-6cd.example.com/login" rel="noopener noreferrer nofollow">Sign in</a></p>
+<p><a href="https://bank.example.com@evil.example.net/login" rel="noopener noreferrer nofollow">https://bank.example.com</a></p>
+<p><a href="http://192.0.2.44/login" rel="noopener noreferrer nofollow">Secure portal</a></p>
+<p><a href="https://xn--pple-43d.com/" rel="noopener noreferrer nofollow">аpple.com</a></p>
+<p><a href="https://help.bank.example.com/faq" rel="noopener noreferrer nofollow">help.bank.example.com/faq</a> (this one is fine)</p>
+<p><a href="https://www.bank.example.com/" rel="noopener noreferrer nofollow">www.bank.example.com</a> (also fine)</p>
+<p>Regards, Security Team</p>
+
+
+== blocks ==
+[
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "Your account is on hold. Sign in to restore access:"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "https://www.bank.example.com/login",
+        "link": {
+          "href": "https://login.examp1e-secure.example.net/verify",
+          "warning": {
+            "kind": "text_shows_other_domain",
+            "shown": "www.bank.example.com",
+            "actual": "login.examp1e-secure.example.net"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "Sign in",
+        "link": {
+          "href": "https://xn--bnk-6cd.example.com/login",
+          "warning": {
+            "kind": "punycode",
+            "host": "xn--bnk-6cd.example.com",
+            "unicode": "bаnk.example.com"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "https://bank.example.com",
+        "link": {
+          "href": "https://bank.example.com@evil.example.net/login",
+          "warning": {
+            "kind": "userinfo",
+            "actual": "evil.example.net"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "Secure portal",
+        "link": {
+          "href": "http://192.0.2.44/login",
+          "warning": {
+            "kind": "ip_address",
+            "host": "192.0.2.44"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "аpple.com",
+        "link": {
+          "href": "https://xn--pple-43d.com/",
+          "warning": {
+            "kind": "punycode",
+            "host": "xn--pple-43d.com",
+            "unicode": "аpple.com"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "help.bank.example.com/faq",
+        "link": {
+          "href": "https://help.bank.example.com/faq"
+        }
+      },
+      {
+        "text": " (this one is fine)"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "www.bank.example.com",
+        "link": {
+          "href": "https://www.bank.example.com/"
+        }
+      },
+      {
+        "text": " (also fine)"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "Regards, Security Team"
+      }
+    ]
+  }
+]
+== plain text ==
+Your account is on hold. Sign in to restore access:
+
+https://www.bank.example.com/login
+
+Sign in
+
+https://bank.example.com
+
+Secure portal
+
+аpple.com
+
+help.bank.example.com/faq (this one is fine)
+
+www.bank.example.com (also fine)
+
+Regards, Security Team
+== ai text ==
+Your account is on hold. Sign in to restore access:
+
+https://www.bank.example.com/login <https://login.examp1e-secure.example.net/verify>
+
+Sign in <https://xn--bnk-6cd.example.com/login>
+
+https://bank.example.com <https://bank.example.com@evil.example.net/login>
+
+Secure portal <http://192.0.2.44/login>
+
+аpple.com <https://xn--pple-43d.com/>
+
+help.bank.example.com/faq (this one is fine)
+
+www.bank.example.com (also fine)
+
+Regards, Security Team
+== snippet ==
+Your account is on hold. Sign in to restore access: https://www.bank.example.com/login Sign in https://bank.example.com Secure portal…

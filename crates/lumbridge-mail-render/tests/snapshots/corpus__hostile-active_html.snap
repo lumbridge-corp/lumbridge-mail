@@ -1,0 +1,244 @@
+---
+source: crates/lumbridge-mail-render/tests/corpus.rs
+expression: render_all(name)
+---
+== report ==
+{
+  "remote_images": 1,
+  "remote_blocked": true,
+  "tracking_pixels": 0,
+  "remote_css": 2,
+  "cid_images": 0,
+  "cid_unresolved": 0,
+  "suspicious_links": [],
+  "removed": {
+    "scripts": 3,
+    "event_handlers": 10,
+    "forms": 1,
+    "frames": 3,
+    "stylesheets": 0,
+    "meta_refresh": 1,
+    "base_tags": 1,
+    "svg": 2,
+    "unsafe_links": 7,
+    "data_uris": 2,
+    "hidden": 0
+  },
+  "truncated": false
+}
+== safe html ==
+
+<p>Dear customer, please confirm your details.</p>
+
+<img alt="banner" width="200" height="80" data-lbm-kind="blocked">
+<a rel="noopener noreferrer nofollow">javascript link</a>
+<a rel="noopener noreferrer nofollow">mixed case</a>
+<a rel="noopener noreferrer nofollow">entity tab</a>
+<a rel="noopener noreferrer nofollow">entity encoded</a>
+<a rel="noopener noreferrer nofollow">vbscript</a>
+<a rel="noopener noreferrer nofollow">data html link</a>
+<a rel="noopener noreferrer nofollow">relative</a>
+<a href="https://example.com/ok" rel="noopener noreferrer nofollow">ok link with handlers</a>
+
+
+
+
+
+<div>
+  <p>Card number:  PIN: </p>
+  
+</div>
+"&gt;<p></p>
+
+--&gt;
+<p style="width: 100%; height: 100%">overlay</p>
+<p>ie expression</p>
+<p>css js url</p>
+<p>bindings</p>
+
+
+<details><summary>More</summary>hidden</details>
+
+marquee text
+
+<table><tbody><tr><td>bg table</td></tr></tbody></table>
+
+
+
+== blocks ==
+[
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "Dear customer, please confirm your details."
+      }
+    ]
+  },
+  {
+    "type": "image",
+    "source": {
+      "kind": "blocked",
+      "host": "cdn.example.net"
+    },
+    "alt": "banner",
+    "width": 200,
+    "height": 80
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "javascript link mixed case entity tab entity encoded vbscript data html link relative "
+      },
+      {
+        "text": "ok link with handlers",
+        "link": {
+          "href": "https://example.com/ok"
+        }
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "Card number: PIN:"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "\">"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "-->"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "overlay"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "ie expression"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "css js url"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "bindings"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "More"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "hidden"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "marquee text"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "bg table"
+      }
+    ]
+  }
+]
+== plain text ==
+Dear customer, please confirm your details.
+
+javascript link mixed case entity tab entity encoded vbscript data html link relative ok link with handlers
+
+Card number: PIN:
+
+">
+
+-->
+
+overlay
+
+ie expression
+
+css js url
+
+bindings
+
+More
+
+hidden
+
+marquee text
+
+bg table
+== ai text ==
+Dear customer, please confirm your details.
+
+javascript link mixed case entity tab entity encoded vbscript data html link relative ok link with handlers <https://example.com/ok>
+
+Card number: PIN:
+
+">
+
+-->
+
+overlay
+
+ie expression
+
+css js url
+
+bindings
+
+More
+
+hidden
+
+marquee text
+
+bg table
+== snippet ==
+Dear customer, please confirm your details. javascript link mixed case entity tab entity encoded vbscript data html link relative ok link…

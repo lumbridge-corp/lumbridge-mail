@@ -1,0 +1,204 @@
+---
+source: crates/lumbridge-mail-render/tests/corpus.rs
+expression: render_all(name)
+---
+== report ==
+{
+  "remote_images": 0,
+  "remote_blocked": false,
+  "tracking_pixels": 0,
+  "remote_css": 0,
+  "cid_images": 0,
+  "cid_unresolved": 0,
+  "suspicious_links": [],
+  "removed": {
+    "scripts": 0,
+    "event_handlers": 0,
+    "forms": 0,
+    "frames": 0,
+    "stylesheets": 0,
+    "meta_refresh": 0,
+    "base_tags": 0,
+    "svg": 0,
+    "unsafe_links": 0,
+    "data_uris": 0,
+    "hidden": 0
+  },
+  "truncated": false
+}
+== safe html ==
+<div><p>Unclosed paragraph</p><p>Another one <b>bold <i>bold italic</i></b><i> italic?</i>
+</p></div>
+<table><tbody><tr><td>cell one</td><td>cell two</td></tr><tr><td>row two</td></tr></tbody></table>
+<ul><li>one</li><li>two<ul><li>nested</li></ul></li><li>three</li></ul>
+<a href="https://example.com/a" rel="noopener noreferrer nofollow">link </a><a href="https://example.com/b" rel="noopener noreferrer nofollow">nested link</a>
+
+== blocks ==
+[
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "Unclosed paragraph"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "Another one "
+      },
+      {
+        "text": "bold ",
+        "bold": true
+      },
+      {
+        "text": "bold italic",
+        "bold": true,
+        "italic": true
+      },
+      {
+        "text": " italic?",
+        "italic": true
+      }
+    ]
+  },
+  {
+    "type": "table",
+    "rows": [
+      [
+        {
+          "spans": [
+            {
+              "text": "cell one"
+            }
+          ],
+          "colspan": 1
+        },
+        {
+          "spans": [
+            {
+              "text": "cell two"
+            }
+          ],
+          "colspan": 1
+        }
+      ],
+      [
+        {
+          "spans": [
+            {
+              "text": "row two"
+            }
+          ],
+          "colspan": 1
+        }
+      ]
+    ],
+    "header_rows": 0
+  },
+  {
+    "type": "list",
+    "ordered": false,
+    "start": 1,
+    "items": [
+      [
+        {
+          "type": "paragraph",
+          "spans": [
+            {
+              "text": "one"
+            }
+          ]
+        }
+      ],
+      [
+        {
+          "type": "paragraph",
+          "spans": [
+            {
+              "text": "two"
+            }
+          ]
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "start": 1,
+          "items": [
+            [
+              {
+                "type": "paragraph",
+                "spans": [
+                  {
+                    "text": "nested"
+                  }
+                ]
+              }
+            ]
+          ]
+        }
+      ],
+      [
+        {
+          "type": "paragraph",
+          "spans": [
+            {
+              "text": "three"
+            }
+          ]
+        }
+      ]
+    ]
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "link ",
+        "link": {
+          "href": "https://example.com/a"
+        }
+      },
+      {
+        "text": "nested link",
+        "link": {
+          "href": "https://example.com/b"
+        }
+      }
+    ]
+  }
+]
+== plain text ==
+Unclosed paragraph
+
+Another one bold bold italic italic?
+
+cell one | cell two
+row two
+
+- one
+- two
+
+  - nested
+- three
+
+link nested link
+== ai text ==
+Unclosed paragraph
+
+Another one bold bold italic italic?
+
+cell one | cell two
+row two
+
+- one
+- two
+
+  - nested
+- three
+
+link <https://example.com/a> nested link <https://example.com/b>
+== snippet ==
+Unclosed paragraph Another one bold bold italic italic? cell one | cell two row two - one - two - nested - three link nested link

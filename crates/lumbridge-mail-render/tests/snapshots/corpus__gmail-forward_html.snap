@@ -1,0 +1,105 @@
+---
+source: crates/lumbridge-mail-render/tests/corpus.rs
+expression: render_all(name)
+---
+== report ==
+{
+  "remote_images": 0,
+  "remote_blocked": false,
+  "tracking_pixels": 0,
+  "remote_css": 0,
+  "cid_images": 0,
+  "cid_unresolved": 0,
+  "suspicious_links": [],
+  "removed": {
+    "scripts": 0,
+    "event_handlers": 0,
+    "forms": 0,
+    "frames": 0,
+    "stylesheets": 0,
+    "meta_refresh": 0,
+    "base_tags": 0,
+    "svg": 0,
+    "unsafe_links": 0,
+    "data_uris": 0,
+    "hidden": 0
+  },
+  "truncated": false
+}
+== safe html ==
+<div dir="ltr">See the itinerary below.<br><br><div><div dir="ltr">---------- Forwarded message ---------<br>From: <strong dir="auto">Example Air</strong> <span dir="auto">&lt;<a href="mailto:trips@air.example.com" rel="noopener noreferrer nofollow">trips@air.example.com</a>&gt;</span><br>Date: Sun, Nov 8, 2026 at 7:00 PM<br>Subject: Your trip to Example City<br>To: &lt;<a href="mailto:oz@example.com" rel="noopener noreferrer nofollow">oz@example.com</a>&gt;<br></div><br><br><div>Flight EX 123 departs Nov 20 at 08:15.</div></div></div>
+
+== blocks ==
+[
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "See the itinerary below."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "---------- Forwarded message ---------\nFrom: "
+      },
+      {
+        "text": "Example Air",
+        "bold": true
+      },
+      {
+        "text": " <"
+      },
+      {
+        "text": "trips@air.example.com",
+        "link": {
+          "href": "mailto:trips@air.example.com"
+        }
+      },
+      {
+        "text": ">\nDate: Sun, Nov 8, 2026 at 7:00 PM\nSubject: Your trip to Example City\nTo: <"
+      },
+      {
+        "text": "oz@example.com",
+        "link": {
+          "href": "mailto:oz@example.com"
+        }
+      },
+      {
+        "text": ">"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "Flight EX 123 departs Nov 20 at 08:15."
+      }
+    ]
+  }
+]
+== plain text ==
+See the itinerary below.
+
+---------- Forwarded message ---------
+From: Example Air <trips@air.example.com>
+Date: Sun, Nov 8, 2026 at 7:00 PM
+Subject: Your trip to Example City
+To: <oz@example.com>
+
+Flight EX 123 departs Nov 20 at 08:15.
+== ai text ==
+See the itinerary below.
+
+---------- Forwarded message ---------
+From: Example Air <trips@air.example.com>
+Date: Sun, Nov 8, 2026 at 7:00 PM
+Subject: Your trip to Example City
+To: <oz@example.com>
+
+Flight EX 123 departs Nov 20 at 08:15.
+== snippet ==
+See the itinerary below. ---------- Forwarded message --------- From: Example Air <trips@air.example.com> Date: Sun, Nov 8, 2026 at 7:00…

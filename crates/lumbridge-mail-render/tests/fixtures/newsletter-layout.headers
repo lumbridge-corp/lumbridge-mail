@@ -1,0 +1,5 @@
+From: Widget Weekly <news@mail.widgets.example.com>
+List-Unsubscribe: <mailto:unsub@mail.widgets.example.com?subject=unsubscribe>, <https://mail.widgets.example.com/u/abc123>
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+List-Id: Widget Weekly <weekly.widgets.example.com>
+Authentication-Results: mx.example.net; spf=pass smtp.mailfrom=bounce@mail.widgets.example.com; dkim=pass header.d=widgets.example.com; dmarc=pass header.from=widgets.example.com

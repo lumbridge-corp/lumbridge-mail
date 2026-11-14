@@ -1,0 +1,24 @@
+[package]
+name = "lumbridge-mail-ai"
+version = "0.1.0"
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+publish.workspace = true
+description = "Lumbridge Mail: rules-first triage, summaries, reply drafts and ask-your-mail over an OpenAI-compatible model"
+
+[dependencies]
+lumbridge-mail-core = { path = "../lumbridge-mail-core" }
+# HTML to text for prompts (the same text the reader shows, minus what it hides).
+lumbridge-mail-render = { path = "../lumbridge-mail-render" }
+async-trait = "0.1"
+futures = { version = "0.3", default-features = false, features = ["std", "async-await"] }
+regex = "1"
+reqwest = { version = "0.13", default-features = false, features = ["rustls", "json"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["time"] }
+
+[dev-dependencies]
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "time", "net", "io-util"] }

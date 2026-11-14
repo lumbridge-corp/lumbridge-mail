@@ -1,0 +1,18 @@
+Hi Ada,
+
+Friday works. I'll book the table at noon; the menu is at https://bistro.example.com/menu.
+
+Thanks,
+Bo
+
+-- 
+Bo Example
+Example Widgets Ltd. | +1 555 0100
+
+On Tue, Nov 3, 2026 at 9:12 AM Ada Example <ada@example.com> wrote:
+> Lunch on Friday? I can do noon or 1pm.
+>
+> On Mon, Nov 2, 2026 at 6:01 PM Bo Example <bo@example.org> wrote:
+>> We should catch up about the widget launch.
+>> - pricing
+>> - the beta list

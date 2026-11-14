@@ -1,0 +1,107 @@
+---
+source: crates/lumbridge-mail-render/tests/corpus.rs
+expression: render_all(name)
+---
+== report ==
+{
+  "remote_images": 0,
+  "remote_blocked": false,
+  "tracking_pixels": 0,
+  "remote_css": 0,
+  "cid_images": 1,
+  "cid_unresolved": 1,
+  "suspicious_links": [],
+  "removed": {
+    "scripts": 0,
+    "event_handlers": 0,
+    "forms": 0,
+    "frames": 0,
+    "stylesheets": 0,
+    "meta_refresh": 0,
+    "base_tags": 0,
+    "svg": 0,
+    "unsafe_links": 0,
+    "data_uris": 0,
+    "hidden": 0
+  },
+  "truncated": false
+}
+== safe html ==
+
+<p>Here is the floor plan:</p>
+<p><img alt="Floor plan" width="640" height="480" data-lbm-kind="cid" src="cid:floorplan@example.com"></p>
+<p>And the missing one: <img alt="Old logo" data-lbm-kind="missing"></p>
+<p>Tiny inline icon <img alt="dot" width="40" height="40" data-lbm-kind="data" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="></p>
+
+
+== blocks ==
+[
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "Here is the floor plan:"
+      }
+    ]
+  },
+  {
+    "type": "image",
+    "source": {
+      "kind": "cid",
+      "content_id": "floorplan@example.com",
+      "attachment": "att-1"
+    },
+    "alt": "Floor plan",
+    "width": 640,
+    "height": 480
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "And the missing one:"
+      }
+    ]
+  },
+  {
+    "type": "image",
+    "source": {
+      "kind": "cid",
+      "content_id": "missing@example.com",
+      "attachment": null
+    },
+    "alt": "Old logo"
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "Tiny inline icon"
+      }
+    ]
+  },
+  {
+    "type": "image",
+    "source": {
+      "kind": "data",
+      "uri": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+    },
+    "alt": "dot",
+    "width": 40,
+    "height": 40
+  }
+]
+== plain text ==
+Here is the floor plan:
+
+And the missing one:
+
+Tiny inline icon
+== ai text ==
+Here is the floor plan:
+
+And the missing one:
+
+Tiny inline icon
+== snippet ==
+Here is the floor plan: And the missing one: Tiny inline icon

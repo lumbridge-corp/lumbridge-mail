@@ -1,0 +1,48 @@
+[package]
+name = "lumbridge-mail-e2e"
+version = "0.1.0"
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+publish.workspace = true
+rust-version.workspace = true
+description = "Lumbridge Mail: the GPUI app driven against the real lumbridge-maild (end-to-end tests only)"
+
+# The library is the test harness: a real daemon on a temp LUMBRIDGE_MAIL_HOME with made-up mail and a
+# scripted model, and the app window on GPUI's headless test platform pointed at its socket.
+[lib]
+name = "lumbridge_mail_e2e"
+
+[dependencies]
+lumbridge-mail-core = { path = "../lumbridge-mail-core" }
+lumbridge-mail-ai = { path = "../lumbridge-mail-ai" }
+lumbridge-maild = { path = "../lumbridge-maild" }
+lumbridge-mail-app = { path = "../lumbridge-mail-app" }
+gpui-kit = { version = "=0.9.1", features = ["test-support"] }
+serde_json = "1"
+futures = "0.3"
+tempfile = "3"
+tokio = { version = "1", features = ["rt-multi-thread", "time", "macros"] }
+libc = "0.2"
+image = { version = "0.25", default-features = false, features = ["png"] }
+
+[[test]]
+name = "app_on_daemon"
+path = "tests/app_on_daemon.rs"
+harness = false
+
+[[test]]
+name = "autostart"
+path = "tests/autostart.rs"
+harness = false
+
+[[test]]
+name = "shots_on_daemon"
+path = "tests/shots_on_daemon.rs"
+harness = false
+
+[[test]]
+name = "remote_app"
+path = "tests/remote_app.rs"
+harness = false

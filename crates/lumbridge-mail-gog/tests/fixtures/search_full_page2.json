@@ -1,0 +1,16 @@
+{
+  "messages": [
+    {
+      "id": "18f0a1b2c3d4e500",
+      "threadId": "18f0a1b2c3d4e500",
+      "date": "2025-11-10 08:00",
+      "from": "x",
+      "subject": "x",
+      "labels": [
+        "TRASH",
+        "Receipts"
+      ]
+    }
+  ],
+  "nextPageToken": ""
+}

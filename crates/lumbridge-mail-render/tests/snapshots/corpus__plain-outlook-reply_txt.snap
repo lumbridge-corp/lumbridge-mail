@@ -1,0 +1,68 @@
+---
+source: crates/lumbridge-mail-render/tests/corpus.rs
+expression: render_all(name)
+---
+== blocks ==
+[
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "Approved, please go ahead."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "Fay"
+      }
+    ]
+  }
+]
+== quoted ==
+[
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "________________________________\nFrom: Gus Example <gus@example.net>\nSent: Thursday, November 5, 2026 4:30 PM\nTo: Fay Example <fay@example.net>\nSubject: Purchase request #4411"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "Hi Fay,"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "Requesting approval for 3 monitors (total $840)."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "Gus"
+      }
+    ]
+  }
+]
+== plain text ==
+Approved, please go ahead.
+
+Fay
+== ai text ==
+Approved, please go ahead.
+
+Fay
+== snippet ==
+Approved, please go ahead. Fay

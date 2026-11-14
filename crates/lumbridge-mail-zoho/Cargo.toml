@@ -1,0 +1,28 @@
+[package]
+name = "lumbridge-mail-zoho"
+version = "0.1.0"
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+publish.workspace = true
+description = "Lumbridge Mail: a Provider for Zoho Mail through Zoho's hosted MCP server (JSON-RPC tools/call over HTTPS)"
+
+[dependencies]
+lumbridge-mail-core = { path = "../lumbridge-mail-core" }
+async-trait = "0.1"
+# Header blocks, address lists and the raw message (attachments): the same parser as the IMAP crate.
+mail-parser = { version = "0.11", features = ["full_encoding"] }
+# The same client and TLS stack as lumbridge-mail-resend / -ai (already in the tree). No `form` feature:
+# the one form we post (the token refresh) is encoded here.
+reqwest = { version = "0.13", default-features = false, features = ["rustls", "json"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+# Duplicate-send check key from the draft's local id.
+sha2 = "0.10"
+# `net` and `io-util` are for `fake`, the in-process fake Zoho MCP server (ours and the daemon's tests).
+tokio = { version = "1", features = ["fs", "io-util", "macros", "net", "rt", "sync", "time"] }
+
+[dev-dependencies]
+tempfile = "3"
+tokio = { version = "1", features = ["fs", "io-util", "macros", "net", "rt", "rt-multi-thread", "sync", "time", "test-util"] }

@@ -1,0 +1,60 @@
+[package]
+name = "lumbridge-maild"
+version = "0.1.0"
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+publish.workspace = true
+rust-version.workspace = true
+description = "Lumbridge Mail: the daemon (sync engine, action queue runner, JSON-RPC server, AI scheduling) and the lbmail CLI"
+
+[lib]
+name = "lumbridge_maild"
+
+[[bin]]
+name = "lumbridge-maild"
+path = "src/bin/lumbridge-maild.rs"
+
+[[bin]]
+name = "lbmail"
+path = "src/bin/lbmail.rs"
+
+[features]
+# Build libdbus from source (the Secret Service keyring) instead of linking the system's: for
+# cross-builds, e.g. the aarch64 server binaries (scripts/remote-arm64), where there is no target libdbus.
+vendored-dbus = ["keyring/vendored"]
+
+[dependencies]
+lumbridge-mail-core = { path = "../lumbridge-mail-core" }
+lumbridge-mail-store = { path = "../lumbridge-mail-store" }
+lumbridge-mail-gog = { path = "../lumbridge-mail-gog" }
+lumbridge-mail-imap = { path = "../lumbridge-mail-imap" }
+lumbridge-mail-resend = { path = "../lumbridge-mail-resend" }
+lumbridge-mail-zoho = { path = "../lumbridge-mail-zoho" }
+lumbridge-mail-render = { path = "../lumbridge-mail-render" }
+lumbridge-mail-ai = { path = "../lumbridge-mail-ai" }
+lumbridge-mail-pg = { path = "../lumbridge-mail-pg" }
+lumbridge-mail-index = { path = "../lumbridge-mail-index" }
+async-trait = "0.1"
+# Attachment bytes on the wire (`message.attachment.read`).
+base64 = "0.22"
+clap = { version = "4.5", features = ["derive"] }
+futures = "0.3"
+getrandom = "0.3"
+# Peer credentials on the socket (the connecting process must be our own user).
+libc = "0.2"
+# IMAP passwords: macOS Keychain, the Secret Service on Linux. Headless boxes use password_env / password_command.
+keyring = { version = "3.6", default-features = false, features = ["apple-native", "sync-secret-service", "crypto-rust"] }
+rpassword = "7"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha2 = "0.10"
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "net", "io-util", "io-std", "sync", "time", "signal", "fs", "process"] }
+tokio-util = { version = "0.7", features = ["codec"] }
+toml = "0.9"
+
+[dev-dependencies]
+tempfile = "3"
+# The imap crate's fake IMAP/SMTP servers (tests/common) need these.
+mail-parser = { version = "0.11", features = ["full_encoding"] }

@@ -1,0 +1,50 @@
+# systemd user unit for the Lumbridge Mail daemon.
+#   install:  deploy/install-linux.sh --systemd   (binaries to ~/.local/bin, this file to ~/.config/systemd/user)
+#             deploy/install-linux.sh --enable    (the same, and enabled and started now)
+#             deploy/install-server.sh <host>     (a headless server: the aarch64/x86_64 daemon + lbmail + this unit)
+#   start:    systemctl --user enable --now lumbridge-maild
+#   boot:     user units run while you are logged in; to keep it running without a login (a server):
+#             sudo loginctl enable-linger $USER
+#   logs:     journalctl --user -u lumbridge-maild -f
+#   reload:   systemctl --user reload lumbridge-maild   (re-reads ~/.config/lumbridge-mail/config.toml)
+#   stop all: lbmail quit   (exits 0, so Restart=on-failure leaves it stopped, and the app will not start one)
+#   pause:    lbmail pause  (stays running, calls no provider; kept across restarts)
+[Unit]
+Description=Lumbridge Mail daemon (sync, action queue, AI triage, JSON-RPC socket)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=%h/.local/bin/lumbridge-maild
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=on-failure
+RestartSec=5
+# The daemon makes its own files private; this keeps anything it forgets that way too.
+UMask=0077
+# Headless boxes without a Secret Service: give IMAP accounts a password_command (e.g. `pass show ...`)
+# rather than putting passwords in files (CONTRIBUTING.md rule 6).
+# The socket's directory ($XDG_RUNTIME_DIR/lumbridge-mail), created 0700 by systemd.
+RuntimeDirectory=lumbridge-mail
+RuntimeDirectoryMode=0700
+# Keep it when the unit stops: `lbmail quit` leaves maild.stopped there so the app does not start a daemon.
+RuntimeDirectoryPreserve=yes
+NoNewPrivileges=yes
+PrivateTmp=yes
+# Seccomp-based limits (work in user units; no namespaces needed). The daemon and what it runs (ssh, gog,
+# a password_command) are ordinary services: no realtime, no new namespaces, no W+X memory, native calls.
+LockPersonality=yes
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+RestrictNamespaces=yes
+MemoryDenyWriteExecute=yes
+SystemCallArchitectures=native
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+# Gentle on a shared machine (a GPU server): below normal priority, never ahead of real work.
+Nice=5
+# No ProtectHome/ProtectSystem: a local gog refreshes its OAuth tokens under ~/.config, and ssh to a
+# gog host writes ~/.ssh/known_hosts. Tighten once the first live account has run under it.
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,29 @@
+[package]
+name = "lumbridge-mail-index"
+version = "0.1.0"
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+publish.workspace = true
+rust-version.workspace = true
+description = "Lumbridge Mail: chunking and embeddings for semantic search, and structured facts parsed out of mail (rules first, model second)"
+
+[dependencies]
+lumbridge-mail-core = { path = "../lumbridge-mail-core" }
+# The model trait, the prompt fence, the injection detector and the output checks.
+lumbridge-mail-ai = { path = "../lumbridge-mail-ai" }
+async-trait = "0.1"
+# schema.org JSON-LD and microdata out of received HTML (the same parser the render crate uses).
+html5ever = "0.40"
+markup5ever_rcdom = "0.40.1"
+regex = "1"
+reqwest = { version = "0.13", default-features = false, features = ["rustls", "json"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha2 = "0.10"
+# `fake`: an in-process OpenAI-compatible embeddings server for tests (this crate's and the daemon's).
+tokio = { version = "1", features = ["time", "sync", "net", "io-util", "rt"] }
+
+[dev-dependencies]
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "time", "net", "io-util", "test-util"] }

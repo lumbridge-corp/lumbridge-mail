@@ -1,0 +1,141 @@
+---
+source: crates/lumbridge-mail-render/tests/corpus.rs
+expression: render_all(name)
+---
+== blocks ==
+[
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "Hi Ada,"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "Friday works. I'll book the table at noon; the menu is at "
+      },
+      {
+        "text": "https://bistro.example.com/menu",
+        "link": {
+          "href": "https://bistro.example.com/menu"
+        }
+      },
+      {
+        "text": "."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "Thanks,\nBo"
+      }
+    ]
+  }
+]
+== signature ==
+[
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "--\nBo Example\nExample Widgets Ltd. | +1 555 0100"
+      }
+    ]
+  }
+]
+== quoted ==
+[
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "On Tue, Nov 3, 2026 at 9:12 AM Ada Example <ada@example.com> wrote:"
+      }
+    ]
+  },
+  {
+    "type": "quote",
+    "depth": 1,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "spans": [
+          {
+            "text": "Lunch on Friday? I can do noon or 1pm."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "spans": [
+          {
+            "text": "On Mon, Nov 2, 2026 at 6:01 PM Bo Example <bo@example.org> wrote:"
+          }
+        ]
+      },
+      {
+        "type": "quote",
+        "depth": 2,
+        "blocks": [
+          {
+            "type": "paragraph",
+            "spans": [
+              {
+                "text": "We should catch up about the widget launch."
+              }
+            ]
+          },
+          {
+            "type": "list",
+            "ordered": false,
+            "start": 1,
+            "items": [
+              [
+                {
+                  "type": "paragraph",
+                  "spans": [
+                    {
+                      "text": "pricing"
+                    }
+                  ]
+                }
+              ],
+              [
+                {
+                  "type": "paragraph",
+                  "spans": [
+                    {
+                      "text": "the beta list"
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
+== plain text ==
+Hi Ada,
+
+Friday works. I'll book the table at noon; the menu is at https://bistro.example.com/menu.
+
+Thanks,
+Bo
+== ai text ==
+Hi Ada,
+
+Friday works. I'll book the table at noon; the menu is at https://bistro.example.com/menu.
+
+Thanks,
+Bo
+== snippet ==
+Hi Ada, Friday works. I'll book the table at noon; the menu is at https://bistro.example.com/menu. Thanks, Bo

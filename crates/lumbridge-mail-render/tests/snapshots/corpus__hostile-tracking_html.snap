@@ -1,0 +1,81 @@
+---
+source: crates/lumbridge-mail-render/tests/corpus.rs
+expression: render_all(name)
+---
+== report ==
+{
+  "remote_images": 1,
+  "remote_blocked": true,
+  "tracking_pixels": 7,
+  "remote_css": 0,
+  "cid_images": 0,
+  "cid_unresolved": 0,
+  "suspicious_links": [],
+  "removed": {
+    "scripts": 0,
+    "event_handlers": 0,
+    "forms": 0,
+    "frames": 0,
+    "stylesheets": 0,
+    "meta_refresh": 0,
+    "base_tags": 0,
+    "svg": 0,
+    "unsafe_links": 0,
+    "data_uris": 0,
+    "hidden": 2
+  },
+  "truncated": false
+}
+== safe html ==
+
+<p>Hi! Just following up on my last note.</p>
+<p>Best, Uma</p>
+
+
+
+
+
+
+
+<img alt="Our team" width="400" height="300" data-lbm-kind="blocked">
+
+
+== blocks ==
+[
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "Hi! Just following up on my last note."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "Best, Uma"
+      }
+    ]
+  },
+  {
+    "type": "image",
+    "source": {
+      "kind": "blocked",
+      "host": "cdn.example.org"
+    },
+    "alt": "Our team",
+    "width": 400,
+    "height": 300
+  }
+]
+== plain text ==
+Hi! Just following up on my last note.
+
+Best, Uma
+== ai text ==
+Hi! Just following up on my last note.
+
+Best, Uma
+== snippet ==
+Hi! Just following up on my last note. Best, Uma

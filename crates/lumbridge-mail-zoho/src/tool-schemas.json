@@ -1,0 +1,1434 @@
+[
+ {
+  "inputSchema": {
+   "properties": {
+    "query_params": {
+     "properties": {
+      "fields": {
+       "default": "accountId,emailAddress,displayName,accountType,isDefaultAccount",
+       "description": "Fields to return, comma-separated. Default: accountId,emailAddress,displayName,accountType,isDefaultAccount",
+       "type": "string"
+      }
+     },
+     "required": [],
+     "type": "object"
+    }
+   },
+   "required": [],
+   "type": "object"
+  },
+  "name": "ZohoMail_list_accounts"
+ },
+ {
+  "inputSchema": {
+   "properties": {
+    "path_variables": {
+     "properties": {
+      "accountId": {
+       "default": "me",
+       "description": "Account ID, or 'me' for the primary account. Not an email address.",
+       "type": "string"
+      }
+     },
+     "required": [
+      "accountId"
+     ],
+     "type": "object"
+    },
+    "query_params": {
+     "properties": {
+      "accountType": {
+       "description": "Account type: 0=POP, 1=Primary, 2=IMAP. Needed only when the address has multiple accounts.",
+       "enum": [
+        "0",
+        "1",
+        "2"
+       ],
+       "type": "string"
+      },
+      "fields": {
+       "default": "folderId,folderName,parentFolderId,previousFolderId,path",
+       "description": "Fields to return, comma-separated. Default: folderId,folderName,parentFolderId,previousFolderId,path",
+       "type": "string"
+      }
+     },
+     "required": [],
+     "type": "object"
+    }
+   },
+   "required": [
+    "path_variables"
+   ],
+   "type": "object"
+  },
+  "name": "ZohoMail_list_folders"
+ },
+ {
+  "inputSchema": {
+   "properties": {
+    "path_variables": {
+     "properties": {
+      "accountId": {
+       "default": "me",
+       "description": "Account ID, or 'me' for the primary account. Not an email address.",
+       "type": "string"
+      }
+     },
+     "required": [
+      "accountId"
+     ],
+     "type": "object"
+    },
+    "query_params": {
+     "properties": {
+      "accountType": {
+       "description": "Account type: 0=POP, 1=Primary, 2=IMAP. Needed only when the address has multiple accounts.",
+       "enum": [
+        "0",
+        "1",
+        "2"
+       ],
+       "type": "string"
+      },
+      "fields": {
+       "default": "messageId,threadId,folderId,subject,fromAddress,toAddress,receivedTime",
+       "description": "Fields to return, comma-separated. Default: messageId,threadId,folderId,subject,fromAddress,toAddress,receivedTime",
+       "type": "string"
+      },
+      "flagId": {
+       "description": "Filter by flag. 1: Info, 2: Important, 3: Follow-up.",
+       "enum": [
+        "1",
+        "2",
+        "3"
+       ],
+       "type": "string"
+      },
+      "folderId": {
+       "description": "Unique folder ID. Resolve it from the List Folders API.",
+       "type": "string"
+      },
+      "hasAttachment": {
+       "default": false,
+       "description": "Only mails with attachments.",
+       "type": "boolean"
+      },
+      "hasInlineContent": {
+       "default": false,
+       "description": "Only mails with inline content.",
+       "type": "boolean"
+      },
+      "includeArchived": {
+       "default": false,
+       "description": "Return only archived mails when true.",
+       "type": "boolean"
+      },
+      "includeSent": {
+       "default": false,
+       "description": "Include sent mails when true.",
+       "type": "boolean"
+      },
+      "isFlagged": {
+       "default": false,
+       "description": "Return only flagged mails when true.",
+       "type": "boolean"
+      },
+      "isResponded": {
+       "default": false,
+       "description": "Only mails already responded to.",
+       "type": "boolean"
+      },
+      "isThreaded": {
+       "default": false,
+       "description": "Only mails in a conversation thread.",
+       "type": "boolean"
+      },
+      "labelId": {
+       "description": "Filter by label ID, not a name.",
+       "type": "string"
+      },
+      "limit": {
+       "default": 10,
+       "description": "Maximum number of mails to return.",
+       "maximum": 200,
+       "minimum": 1,
+       "type": "integer"
+      },
+      "pageToken": {
+       "description": "Pagination cursor from a previous response.",
+       "type": "string"
+      },
+      "sortBy": {
+       "default": "time",
+       "description": "Field by which mails are sorted.",
+       "enum": [
+        "time",
+        "size",
+        "messageId"
+       ],
+       "type": "string"
+      },
+      "sortOrder": {
+       "default": false,
+       "description": "Sort ascending when true; descending when false.",
+       "type": "boolean"
+      },
+      "start": {
+       "default": 1,
+       "description": "1-based index of first mail.",
+       "minimum": 1,
+       "type": "integer"
+      },
+      "status": {
+       "description": "Filter mails by read status.",
+       "enum": [
+        "read",
+        "unread"
+       ],
+       "type": "string"
+      }
+     },
+     "required": [],
+     "type": "object"
+    }
+   },
+   "required": [
+    "path_variables"
+   ],
+   "type": "object"
+  },
+  "name": "ZohoMail_list_mails"
+ },
+ {
+  "inputSchema": {
+   "properties": {
+    "path_variables": {
+     "properties": {
+      "accountId": {
+       "default": "me",
+       "description": "Account ID, or 'me' for the primary account. Not an email address.",
+       "type": "string"
+      },
+      "messageId": {
+       "description": "Mail ID; not the Message-ID header.",
+       "type": "string"
+      }
+     },
+     "required": [
+      "accountId",
+      "messageId"
+     ],
+     "type": "object"
+    },
+    "query_params": {
+     "properties": {
+      "accountType": {
+       "description": "Account type: 0=POP, 1=Primary, 2=IMAP. Needed only when the address has multiple accounts.",
+       "enum": [
+        "0",
+        "1",
+        "2"
+       ],
+       "type": "string"
+      },
+      "fields": {
+       "default": "messageId,threadId,folderId,subject,fromAddress,toAddress,receivedTime",
+       "description": "Fields to return, comma-separated. Default: messageId,threadId,folderId,subject,fromAddress,toAddress,receivedTime",
+       "type": "string"
+      }
+     },
+     "required": [],
+     "type": "object"
+    }
+   },
+   "required": [
+    "path_variables"
+   ],
+   "type": "object"
+  },
+  "name": "ZohoMail_get_mail"
+ },
+ {
+  "inputSchema": {
+   "properties": {
+    "path_variables": {
+     "properties": {
+      "accountId": {
+       "default": "me",
+       "description": "Account ID, or 'me' for the primary account. Not an email address.",
+       "type": "string"
+      },
+      "messageId": {
+       "description": "Mail ID; not the Message-ID header.",
+       "type": "string"
+      }
+     },
+     "required": [
+      "accountId",
+      "messageId"
+     ],
+     "type": "object"
+    },
+    "query_params": {
+     "properties": {
+      "accountType": {
+       "description": "Account type: 0=POP, 1=Primary, 2=IMAP. Needed only when the address has multiple accounts.",
+       "enum": [
+        "0",
+        "1",
+        "2"
+       ],
+       "type": "string"
+      },
+      "includeBlockContent": {
+       "default": false,
+       "description": "Include blocked (quoted/collapsed) content separately.",
+       "type": "boolean"
+      }
+     },
+     "required": [],
+     "type": "object"
+    }
+   },
+   "required": [
+    "path_variables"
+   ],
+   "type": "object"
+  },
+  "name": "ZohoMail_get_mail_html"
+ },
+ {
+  "inputSchema": {
+   "properties": {
+    "path_variables": {
+     "properties": {
+      "accountId": {
+       "default": "me",
+       "description": "Account ID, or 'me' for the primary account. Not an email address.",
+       "type": "string"
+      },
+      "messageId": {
+       "description": "Mail ID; not the Message-ID header.",
+       "type": "string"
+      }
+     },
+     "required": [
+      "accountId",
+      "messageId"
+     ],
+     "type": "object"
+    },
+    "query_params": {
+     "properties": {
+      "accountType": {
+       "description": "Account type: 0=POP, 1=Primary, 2=IMAP. Needed only when the address has multiple accounts.",
+       "enum": [
+        "0",
+        "1",
+        "2"
+       ],
+       "type": "string"
+      },
+      "rawFormat": {
+       "default": true,
+       "description": "True: raw header text. False: parsed headers as JSON object.",
+       "type": "boolean"
+      }
+     },
+     "required": [],
+     "type": "object"
+    }
+   },
+   "required": [
+    "path_variables"
+   ],
+   "type": "object"
+  },
+  "name": "ZohoMail_get_mail_headers"
+ },
+ {
+  "inputSchema": {
+   "properties": {
+    "path_variables": {
+     "properties": {
+      "accountId": {
+       "default": "me",
+       "description": "Account ID, or 'me' for the primary account. Not an email address.",
+       "type": "string"
+      },
+      "messageId": {
+       "description": "Mail ID; not the Message-ID header.",
+       "type": "string"
+      }
+     },
+     "required": [
+      "accountId",
+      "messageId"
+     ],
+     "type": "object"
+    },
+    "query_params": {
+     "properties": {
+      "accountType": {
+       "description": "Account type: 0=POP, 1=Primary, 2=IMAP. Needed only when the address has multiple accounts.",
+       "enum": [
+        "0",
+        "1",
+        "2"
+       ],
+       "type": "string"
+      }
+     },
+     "required": [],
+     "type": "object"
+    }
+   },
+   "required": [
+    "path_variables"
+   ],
+   "type": "object"
+  },
+  "name": "ZohoMail_get_mail_original"
+ },
+ {
+  "inputSchema": {
+   "properties": {
+    "path_variables": {
+     "properties": {
+      "accountId": {
+       "default": "me",
+       "description": "Account ID, or 'me' for the primary account. Not an email address.",
+       "type": "string"
+      },
+      "messageId": {
+       "description": "Mail ID; not the Message-ID header.",
+       "type": "string"
+      }
+     },
+     "required": [
+      "accountId",
+      "messageId"
+     ],
+     "type": "object"
+    },
+    "query_params": {
+     "properties": {
+      "accountType": {
+       "description": "Account type: 0=POP, 1=Primary, 2=IMAP. Needed only when the address has multiple accounts.",
+       "enum": [
+        "0",
+        "1",
+        "2"
+       ],
+       "type": "string"
+      },
+      "includeInline": {
+       "default": false,
+       "description": "Include inline attachments.",
+       "type": "boolean"
+      }
+     },
+     "required": [],
+     "type": "object"
+    }
+   },
+   "required": [
+    "path_variables"
+   ],
+   "type": "object"
+  },
+  "name": "ZohoMail_list_mail_attachments"
+ },
+ {
+  "inputSchema": {
+   "properties": {
+    "body": {
+     "description": "Provide messageIds or threadIds.",
+     "properties": {
+      "folderId": {
+       "description": "Folder ID for isFolderSpecific, not a name.",
+       "type": "string"
+      },
+      "isFolderSpecific": {
+       "description": "Restrict the thread action to folderId.",
+       "type": "boolean"
+      },
+      "messageIds": {
+       "description": "Mail IDs to act on. Max 250.",
+       "items": {
+        "type": "string"
+       },
+       "type": "array"
+      },
+      "threadIds": {
+       "description": "Thread IDs to act on. Max 200.",
+       "items": {
+        "type": "string"
+       },
+       "type": "array"
+      }
+     },
+     "type": "object"
+    },
+    "path_variables": {
+     "properties": {
+      "accountId": {
+       "default": "me",
+       "description": "Account ID, or 'me' for the primary account. Not an email address.",
+       "type": "string"
+      }
+     },
+     "required": [
+      "accountId"
+     ],
+     "type": "object"
+    },
+    "query_params": {
+     "properties": {
+      "accountType": {
+       "description": "Account type: 0=POP, 1=Primary, 2=IMAP. Needed only when the address has multiple accounts.",
+       "enum": [
+        "0",
+        "1",
+        "2"
+       ],
+       "type": "string"
+      }
+     },
+     "required": [],
+     "type": "object"
+    }
+   },
+   "required": [
+    "body",
+    "path_variables"
+   ],
+   "type": "object"
+  },
+  "name": "ZohoMail_mark_mails_as_read"
+ },
+ {
+  "inputSchema": {
+   "properties": {
+    "body": {
+     "description": "Provide messageIds or threadIds.",
+     "properties": {
+      "folderId": {
+       "description": "Folder ID for isFolderSpecific, not a name.",
+       "type": "string"
+      },
+      "isFolderSpecific": {
+       "description": "Restrict the thread action to folderId.",
+       "type": "boolean"
+      },
+      "messageIds": {
+       "description": "Mail IDs to act on. Max 250.",
+       "items": {
+        "type": "string"
+       },
+       "type": "array"
+      },
+      "threadIds": {
+       "description": "Thread IDs to act on. Max 200.",
+       "items": {
+        "type": "string"
+       },
+       "type": "array"
+      }
+     },
+     "type": "object"
+    },
+    "path_variables": {
+     "properties": {
+      "accountId": {
+       "default": "me",
+       "description": "Account ID, or 'me' for the primary account. Not an email address.",
+       "type": "string"
+      }
+     },
+     "required": [
+      "accountId"
+     ],
+     "type": "object"
+    },
+    "query_params": {
+     "properties": {
+      "accountType": {
+       "description": "Account type: 0=POP, 1=Primary, 2=IMAP. Needed only when the address has multiple accounts.",
+       "enum": [
+        "0",
+        "1",
+        "2"
+       ],
+       "type": "string"
+      }
+     },
+     "required": [],
+     "type": "object"
+    }
+   },
+   "required": [
+    "body",
+    "path_variables"
+   ],
+   "type": "object"
+  },
+  "name": "ZohoMail_mark_mails_as_unread"
+ },
+ {
+  "inputSchema": {
+   "properties": {
+    "body": {
+     "description": "Provide messageIds or threadIds.",
+     "properties": {
+      "flagId": {
+       "description": "Flag to apply. 1: Info, 2: Important, 3: Follow-up.",
+       "enum": [
+        1,
+        2,
+        3
+       ],
+       "type": "integer"
+      },
+      "folderId": {
+       "description": "Folder ID for isFolderSpecific, not a name.",
+       "type": "string"
+      },
+      "isArchive": {
+       "description": "Include archived mails.",
+       "type": "boolean"
+      },
+      "isFolderSpecific": {
+       "description": "Restrict the thread action to folderId.",
+       "type": "boolean"
+      },
+      "messageIds": {
+       "description": "Mail IDs to act on. Max 250.",
+       "items": {
+        "type": "string"
+       },
+       "type": "array"
+      },
+      "threadIds": {
+       "description": "Thread IDs to act on. Max 200.",
+       "items": {
+        "type": "string"
+       },
+       "type": "array"
+      }
+     },
+     "required": [
+      "flagId"
+     ],
+     "type": "object"
+    },
+    "path_variables": {
+     "properties": {
+      "accountId": {
+       "default": "me",
+       "description": "Account ID, or 'me' for the primary account. Not an email address.",
+       "type": "string"
+      }
+     },
+     "required": [
+      "accountId"
+     ],
+     "type": "object"
+    },
+    "query_params": {
+     "properties": {
+      "accountType": {
+       "description": "Account type: 0=POP, 1=Primary, 2=IMAP. Needed only when the address has multiple accounts.",
+       "enum": [
+        "0",
+        "1",
+        "2"
+       ],
+       "type": "string"
+      }
+     },
+     "required": [],
+     "type": "object"
+    }
+   },
+   "required": [
+    "body",
+    "path_variables"
+   ],
+   "type": "object"
+  },
+  "name": "ZohoMail_apply_mail_flag"
+ },
+ {
+  "inputSchema": {
+   "properties": {
+    "body": {
+     "description": "Provide messageIds or threadIds.",
+     "properties": {
+      "destinationFolderId": {
+       "description": "Target folder ID, not a name.",
+       "type": "string"
+      },
+      "folderId": {
+       "description": "Folder ID for isFolderSpecific, not a name.",
+       "type": "string"
+      },
+      "isArchive": {
+       "description": "Treat source mails as archived while moving.",
+       "type": "boolean"
+      },
+      "isFolderSpecific": {
+       "description": "Restrict the thread action to folderId.",
+       "type": "boolean"
+      },
+      "messageIds": {
+       "description": "Mail IDs to act on. Max 250.",
+       "items": {
+        "type": "string"
+       },
+       "type": "array"
+      },
+      "threadIds": {
+       "description": "Thread IDs to act on. Max 200.",
+       "items": {
+        "type": "string"
+       },
+       "type": "array"
+      }
+     },
+     "required": [
+      "destinationFolderId"
+     ],
+     "type": "object"
+    },
+    "path_variables": {
+     "properties": {
+      "accountId": {
+       "default": "me",
+       "description": "Account ID, or 'me' for the primary account. Not an email address.",
+       "type": "string"
+      }
+     },
+     "required": [
+      "accountId"
+     ],
+     "type": "object"
+    },
+    "query_params": {
+     "properties": {
+      "accountType": {
+       "description": "Account type: 0=POP, 1=Primary, 2=IMAP. Needed only when the address has multiple accounts.",
+       "enum": [
+        "0",
+        "1",
+        "2"
+       ],
+       "type": "string"
+      }
+     },
+     "required": [],
+     "type": "object"
+    }
+   },
+   "required": [
+    "body",
+    "path_variables"
+   ],
+   "type": "object"
+  },
+  "name": "ZohoMail_move_mails"
+ },
+ {
+  "inputSchema": {
+   "properties": {
+    "body": {
+     "description": "Provide messageIds or threadIds.",
+     "properties": {
+      "folderId": {
+       "description": "Folder ID for isFolderSpecific, not a name.",
+       "type": "string"
+      },
+      "isFolderSpecific": {
+       "description": "Restrict the thread action to folderId.",
+       "type": "boolean"
+      },
+      "messageIds": {
+       "description": "Mail IDs to act on. Max 250.",
+       "items": {
+        "type": "string"
+       },
+       "type": "array"
+      },
+      "threadIds": {
+       "description": "Thread IDs to act on. Max 200.",
+       "items": {
+        "type": "string"
+       },
+       "type": "array"
+      }
+     },
+     "type": "object"
+    },
+    "path_variables": {
+     "properties": {
+      "accountId": {
+       "default": "me",
+       "description": "Account ID, or 'me' for the primary account. Not an email address.",
+       "type": "string"
+      }
+     },
+     "required": [
+      "accountId"
+     ],
+     "type": "object"
+    },
+    "query_params": {
+     "properties": {
+      "accountType": {
+       "description": "Account type: 0=POP, 1=Primary, 2=IMAP. Needed only when the address has multiple accounts.",
+       "enum": [
+        "0",
+        "1",
+        "2"
+       ],
+       "type": "string"
+      }
+     },
+     "required": [],
+     "type": "object"
+    }
+   },
+   "required": [
+    "body",
+    "path_variables"
+   ],
+   "type": "object"
+  },
+  "name": "ZohoMail_archive_mails"
+ },
+ {
+  "inputSchema": {
+   "properties": {
+    "body": {
+     "description": "Provide messageIds or threadIds.",
+     "properties": {
+      "folderId": {
+       "description": "Folder ID for isFolderSpecific, not a name.",
+       "type": "string"
+      },
+      "isFolderSpecific": {
+       "description": "Restrict the thread action to folderId.",
+       "type": "boolean"
+      },
+      "messageIds": {
+       "description": "Mail IDs to act on. Max 250.",
+       "items": {
+        "type": "string"
+       },
+       "type": "array"
+      },
+      "threadIds": {
+       "description": "Thread IDs to act on. Max 200.",
+       "items": {
+        "type": "string"
+       },
+       "type": "array"
+      }
+     },
+     "type": "object"
+    },
+    "path_variables": {
+     "properties": {
+      "accountId": {
+       "default": "me",
+       "description": "Account ID, or 'me' for the primary account. Not an email address.",
+       "type": "string"
+      }
+     },
+     "required": [
+      "accountId"
+     ],
+     "type": "object"
+    },
+    "query_params": {
+     "properties": {
+      "accountType": {
+       "description": "Account type: 0=POP, 1=Primary, 2=IMAP. Needed only when the address has multiple accounts.",
+       "enum": [
+        "0",
+        "1",
+        "2"
+       ],
+       "type": "string"
+      }
+     },
+     "required": [],
+     "type": "object"
+    }
+   },
+   "required": [
+    "body",
+    "path_variables"
+   ],
+   "type": "object"
+  },
+  "name": "ZohoMail_unarchive_mails"
+ },
+ {
+  "inputSchema": {
+   "properties": {
+    "body": {
+     "description": "Provide messageIds or threadIds.",
+     "properties": {
+      "folderId": {
+       "description": "Folder ID for isFolderSpecific, not a name.",
+       "type": "string"
+      },
+      "isFolderSpecific": {
+       "description": "Restrict the thread action to folderId.",
+       "type": "boolean"
+      },
+      "messageIds": {
+       "description": "Mail IDs to act on. Max 250.",
+       "items": {
+        "type": "string"
+       },
+       "type": "array"
+      },
+      "threadIds": {
+       "description": "Thread IDs to act on. Max 200.",
+       "items": {
+        "type": "string"
+       },
+       "type": "array"
+      }
+     },
+     "type": "object"
+    },
+    "path_variables": {
+     "properties": {
+      "accountId": {
+       "default": "me",
+       "description": "Account ID, or 'me' for the primary account. Not an email address.",
+       "type": "string"
+      }
+     },
+     "required": [
+      "accountId"
+     ],
+     "type": "object"
+    },
+    "query_params": {
+     "properties": {
+      "accountType": {
+       "description": "Account type: 0=POP, 1=Primary, 2=IMAP. Needed only when the address has multiple accounts.",
+       "enum": [
+        "0",
+        "1",
+        "2"
+       ],
+       "type": "string"
+      }
+     },
+     "required": [],
+     "type": "object"
+    }
+   },
+   "required": [
+    "body",
+    "path_variables"
+   ],
+   "type": "object"
+  },
+  "name": "ZohoMail_move_mails_to_trash"
+ },
+ {
+  "inputSchema": {
+   "properties": {
+    "body": {
+     "description": "Compose fields for the new mail. Requires toAddress, ccAddress or bccAddress.",
+     "properties": {
+      "applicationMessageId": {
+       "description": "Caller-supplied application mail ID, echoed back.",
+       "type": "string"
+      },
+      "attachVcard": {
+       "description": "Attach the sender's vCard.",
+       "type": "boolean"
+      },
+      "attachments": {
+       "description": "Uploaded attachments to include: storeName, attachmentPath, attachmentName from upload API, or fileId.",
+       "items": {
+        "properties": {
+         "attachmentName": {
+          "description": "Uploaded attachment file name, from the attachment upload API.",
+          "type": "string"
+         },
+         "attachmentPath": {
+          "description": "Uploaded attachment temporary storage path, from the attachment upload API.",
+          "type": "string"
+         },
+         "attachmentSize": {
+          "description": "Size of the attachment in bytes.",
+          "type": "integer"
+         },
+         "fileId": {
+          "description": "Combined file ID ('path/fileName'); alternative to storeName, attachmentPath and attachmentName.",
+          "type": "string"
+         },
+         "storeName": {
+          "description": "Uploaded attachment store name, from the attachment upload API.",
+          "type": "string"
+         }
+        },
+        "type": "object"
+       },
+       "type": "array"
+      },
+      "attachmentsCopy": {
+       "description": "Attachments to copy from an existing mail.",
+       "items": {
+        "properties": {
+         "attachmentId": {
+          "description": "Attachment ID to copy from the source mail.",
+          "type": "string"
+         },
+         "messageId": {
+          "description": "Source mail ID containing the attachment. Send as JSON number.",
+          "format": "int64",
+          "type": "integer"
+         }
+        },
+        "type": "object"
+       },
+       "type": "array"
+      },
+      "bccAddress": {
+       "description": "Comma-separated list of Bcc recipient addresses.",
+       "type": "string"
+      },
+      "ccAddress": {
+       "description": "Comma-separated list of Cc recipient addresses.",
+       "type": "string"
+      },
+      "content": {
+       "description": "Mail body, interpreted per contentType.",
+       "type": "string"
+      },
+      "contentType": {
+       "description": "Format of the content field.",
+       "enum": [
+        "html",
+        "plaintext"
+       ],
+       "type": "string"
+      },
+      "customHeader": {
+       "description": "Custom headers as key:value pairs separated by '###'.",
+       "type": "string"
+      },
+      "encoding": {
+       "description": "Body character set. Default: the user's defaultEncoding compose setting.",
+       "enum": [
+        "Big5",
+        "EUC-JP",
+        "EUC-KR",
+        "GB2312",
+        "ISO-2022-JP",
+        "ISO-8859-1",
+        "KOI8-R",
+        "Shift_JIS",
+        "US-ASCII",
+        "UTF-8",
+        "WINDOWS-1250",
+        "WINDOWS-1251",
+        "X-WINDOWS-ISO2022JP"
+       ],
+       "type": "string"
+      },
+      "extraCc": {
+       "description": "Additional Cc addresses appended to recipients.",
+       "type": "string"
+      },
+      "extraTo": {
+       "description": "Additional To addresses appended to recipients.",
+       "type": "string"
+      },
+      "fromAddress": {
+       "description": "Sender address (optional display name). Account's primary or verified alias address. Required.",
+       "type": "string"
+      },
+      "inReplyTo": {
+       "description": "Message-ID header of the mail being replied to.",
+       "type": "string"
+      },
+      "includeSignature": {
+       "description": "Append the account's configured signature.",
+       "type": "boolean"
+      },
+      "isAutoGenerated": {
+       "description": "Mark as auto-generated (sets Auto-Submitted header).",
+       "type": "boolean"
+      },
+      "isAutoReply": {
+       "description": "Marks the mail as an automatic reply.",
+       "type": "boolean"
+      },
+      "isSchedule": {
+       "description": "Schedule the mail instead of sending immediately.",
+       "type": "boolean"
+      },
+      "isSendAndArchive": {
+       "description": "Archive the conversation after sending.",
+       "type": "boolean"
+      },
+      "labelId": {
+       "description": "Label IDs for the sent mail. Not names. Max 200.",
+       "items": {
+        "type": "string"
+       },
+       "type": "array"
+      },
+      "messageId": {
+       "description": "Client-supplied mail ID for correlation and duplicate detection.",
+       "type": "string"
+      },
+      "priority": {
+       "description": "Mail priority, written to the X-Priority header.",
+       "type": "string"
+      },
+      "readReceipt": {
+       "description": "Request a read receipt.",
+       "type": "boolean"
+      },
+      "referencesHeader": {
+       "description": "Message-IDs of previous thread mails, space-separated, chronological.",
+       "type": "string"
+      },
+      "replyTo": {
+       "description": "Reply-To address for the mail.",
+       "type": "string"
+      },
+      "scheduleTime": {
+       "description": "Scheduled send time as 'date HH:mm:ss'; date is dd/MM/yyyy if the user's date format is dd/MM/yy or dd/MM/yyyy, else MM/dd/yyyy (e.g. 20/09/2026 10:30:00). Required when isSchedule is true and scheduleType omitted.",
+       "type": "string"
+      },
+      "scheduleTimeLong": {
+       "description": "Scheduled send time in epoch milliseconds.",
+       "type": "string"
+      },
+      "scheduleType": {
+       "description": "Predefined schedule interval. Required when isSchedule is true and scheduleTime omitted.",
+       "enum": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+       ],
+       "type": "integer"
+      },
+      "sendViaQueue": {
+       "description": "With a custom SMTP server, queue and send offline.",
+       "type": "boolean"
+      },
+      "subject": {
+       "description": "Subject line of the email.",
+       "type": "string"
+      },
+      "timeZone": {
+       "description": "Time zone of scheduled send time. Required when isSchedule is true.",
+       "type": "string"
+      },
+      "toAddress": {
+       "description": "To addresses, comma-separated. At least one of toAddress, ccAddress or bccAddress required.",
+       "type": "string"
+      }
+     },
+     "required": [
+      "fromAddress"
+     ],
+     "type": "object"
+    },
+    "path_variables": {
+     "properties": {
+      "accountId": {
+       "default": "me",
+       "description": "Account ID, or 'me' for the primary account. Not an email address.",
+       "type": "string"
+      }
+     },
+     "required": [
+      "accountId"
+     ],
+     "type": "object"
+    },
+    "query_params": {
+     "properties": {
+      "accountType": {
+       "description": "Account type: 0=POP, 1=Primary, 2=IMAP. Needed only when the address has multiple accounts.",
+       "enum": [
+        "0",
+        "1",
+        "2"
+       ],
+       "type": "string"
+      }
+     },
+     "required": [],
+     "type": "object"
+    }
+   },
+   "required": [
+    "body",
+    "path_variables"
+   ],
+   "type": "object"
+  },
+  "name": "ZohoMail_send_mail"
+ },
+ {
+  "inputSchema": {
+   "properties": {
+    "body": {
+     "description": "Compose fields for the reply.",
+     "properties": {
+      "applicationMessageId": {
+       "description": "Caller-supplied application mail ID, echoed back.",
+       "type": "string"
+      },
+      "attachVcard": {
+       "description": "Attach the sender's vCard.",
+       "type": "boolean"
+      },
+      "attachments": {
+       "description": "Uploaded attachments to include: storeName, attachmentPath, attachmentName from upload API, or fileId.",
+       "items": {
+        "properties": {
+         "attachmentName": {
+          "description": "Uploaded attachment file name, from the attachment upload API.",
+          "type": "string"
+         },
+         "attachmentPath": {
+          "description": "Uploaded attachment temporary storage path, from the attachment upload API.",
+          "type": "string"
+         },
+         "attachmentSize": {
+          "description": "Size of the attachment in bytes.",
+          "type": "integer"
+         },
+         "fileId": {
+          "description": "Combined file ID ('path/fileName'); alternative to storeName, attachmentPath and attachmentName.",
+          "type": "string"
+         },
+         "storeName": {
+          "description": "Uploaded attachment store name, from the attachment upload API.",
+          "type": "string"
+         }
+        },
+        "type": "object"
+       },
+       "type": "array"
+      },
+      "attachmentsCopy": {
+       "description": "Attachments to copy from an existing mail.",
+       "items": {
+        "properties": {
+         "attachmentId": {
+          "description": "Attachment ID to copy from the source mail.",
+          "type": "string"
+         },
+         "messageId": {
+          "description": "Source mail ID containing the attachment. Send as JSON number.",
+          "format": "int64",
+          "type": "integer"
+         }
+        },
+        "type": "object"
+       },
+       "type": "array"
+      },
+      "bccAddress": {
+       "description": "Comma-separated list of Bcc recipient addresses.",
+       "type": "string"
+      },
+      "ccAddress": {
+       "description": "Comma-separated list of Cc recipient addresses.",
+       "type": "string"
+      },
+      "content": {
+       "description": "Mail body, interpreted per contentType.",
+       "type": "string"
+      },
+      "contentType": {
+       "description": "Format of the content field.",
+       "enum": [
+        "html",
+        "plaintext"
+       ],
+       "type": "string"
+      },
+      "customHeader": {
+       "description": "Custom headers as key:value pairs separated by '###'.",
+       "type": "string"
+      },
+      "encoding": {
+       "description": "Body character set. Default: the user's defaultEncoding compose setting.",
+       "enum": [
+        "Big5",
+        "EUC-JP",
+        "EUC-KR",
+        "GB2312",
+        "ISO-2022-JP",
+        "ISO-8859-1",
+        "KOI8-R",
+        "Shift_JIS",
+        "US-ASCII",
+        "UTF-8",
+        "WINDOWS-1250",
+        "WINDOWS-1251",
+        "X-WINDOWS-ISO2022JP"
+       ],
+       "type": "string"
+      },
+      "extraCc": {
+       "description": "Additional Cc addresses appended to recipients.",
+       "type": "string"
+      },
+      "extraTo": {
+       "description": "Additional To addresses appended to recipients.",
+       "type": "string"
+      },
+      "fromAddress": {
+       "description": "Sender address, optional display name. Defaults to the original mail's reply-from address.",
+       "type": "string"
+      },
+      "includeOriginalContent": {
+       "description": "Include the original mail as quoted content. Default true.",
+       "type": "boolean"
+      },
+      "includeSignature": {
+       "description": "Append the account's configured signature.",
+       "type": "boolean"
+      },
+      "isAutoGenerated": {
+       "description": "Mark as auto-generated (sets Auto-Submitted header).",
+       "type": "boolean"
+      },
+      "isAutoReply": {
+       "description": "Marks the mail as an automatic reply.",
+       "type": "boolean"
+      },
+      "isSchedule": {
+       "description": "Schedule the mail instead of sending immediately.",
+       "type": "boolean"
+      },
+      "isSendAndArchive": {
+       "description": "Archive the conversation after sending.",
+       "type": "boolean"
+      },
+      "labelId": {
+       "description": "Label IDs for the sent mail. Not names. Max 200.",
+       "items": {
+        "type": "string"
+       },
+       "type": "array"
+      },
+      "priority": {
+       "description": "Mail priority, written to the X-Priority header.",
+       "type": "string"
+      },
+      "readReceipt": {
+       "description": "Request a read receipt.",
+       "type": "boolean"
+      },
+      "replyTo": {
+       "description": "Reply-To address for the mail.",
+       "type": "string"
+      },
+      "scheduleTime": {
+       "description": "Scheduled send time as 'date HH:mm:ss'; date is dd/MM/yyyy if the user's date format is dd/MM/yy or dd/MM/yyyy, else MM/dd/yyyy (e.g. 20/09/2026 10:30:00). Required when isSchedule is true and scheduleType omitted.",
+       "type": "string"
+      },
+      "scheduleTimeLong": {
+       "description": "Scheduled send time in epoch milliseconds.",
+       "type": "string"
+      },
+      "scheduleType": {
+       "description": "Predefined schedule interval. Required when isSchedule is true and scheduleTime omitted.",
+       "enum": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+       ],
+       "type": "integer"
+      },
+      "sendViaQueue": {
+       "description": "With a custom SMTP server, queue and send offline.",
+       "type": "boolean"
+      },
+      "subject": {
+       "description": "Subject line of the email.",
+       "type": "string"
+      },
+      "timeZone": {
+       "description": "Time zone of scheduled send time. Required when isSchedule is true.",
+       "type": "string"
+      },
+      "toAddress": {
+       "description": "To addresses, comma-separated. Defaults to the original sender.",
+       "type": "string"
+      }
+     },
+     "required": [
+      "content"
+     ],
+     "type": "object"
+    },
+    "path_variables": {
+     "properties": {
+      "accountId": {
+       "default": "me",
+       "description": "Account ID, or 'me' for the primary account. Not an email address.",
+       "type": "string"
+      },
+      "messageId": {
+       "description": "ID of the mail being replied to. Not the Message-ID header.",
+       "type": "string"
+      }
+     },
+     "required": [
+      "accountId",
+      "messageId"
+     ],
+     "type": "object"
+    },
+    "query_params": {
+     "properties": {
+      "accountType": {
+       "description": "Account type: 0=POP, 1=Primary, 2=IMAP. Needed only when the address has multiple accounts.",
+       "enum": [
+        "0",
+        "1",
+        "2"
+       ],
+       "type": "string"
+      }
+     },
+     "required": [],
+     "type": "object"
+    }
+   },
+   "required": [
+    "body",
+    "path_variables"
+   ],
+   "type": "object"
+  },
+  "name": "ZohoMail_reply_to_mail"
+ }
+]

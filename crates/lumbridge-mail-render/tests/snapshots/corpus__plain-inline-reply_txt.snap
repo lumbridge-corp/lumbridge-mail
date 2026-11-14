@@ -1,0 +1,95 @@
+---
+source: crates/lumbridge-mail-render/tests/corpus.rs
+expression: render_all(name)
+---
+== blocks ==
+[
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "On Wed, Nov 4, 2026, Cy Example wrote:"
+      }
+    ]
+  },
+  {
+    "type": "quote",
+    "depth": 1,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "spans": [
+          {
+            "text": "Can you review the draft by Thursday?"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "Yes, Thursday morning."
+      }
+    ]
+  },
+  {
+    "type": "quote",
+    "depth": 1,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "spans": [
+          {
+            "text": "And who owns the budget section?"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "Dee does. I've copied her."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "Cheers,\nEd"
+      }
+    ]
+  }
+]
+== plain text ==
+On Wed, Nov 4, 2026, Cy Example wrote:
+
+> Can you review the draft by Thursday?
+
+Yes, Thursday morning.
+
+> And who owns the budget section?
+
+Dee does. I've copied her.
+
+Cheers,
+Ed
+== ai text ==
+On Wed, Nov 4, 2026, Cy Example wrote:
+
+> Can you review the draft by Thursday?
+
+Yes, Thursday morning.
+
+> And who owns the budget section?
+
+Dee does. I've copied her.
+
+Cheers,
+Ed
+== snippet ==
+On Wed, Nov 4, 2026, Cy Example wrote: > Can you review the draft by Thursday? Yes, Thursday morning. > And who owns the budget section?…

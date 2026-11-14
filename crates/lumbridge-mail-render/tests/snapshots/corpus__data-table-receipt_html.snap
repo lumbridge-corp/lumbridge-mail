@@ -1,0 +1,237 @@
+---
+source: crates/lumbridge-mail-render/tests/corpus.rs
+expression: render_all(name)
+---
+== report ==
+{
+  "remote_images": 0,
+  "remote_blocked": false,
+  "tracking_pixels": 0,
+  "remote_css": 0,
+  "cid_images": 0,
+  "cid_unresolved": 0,
+  "suspicious_links": [],
+  "removed": {
+    "scripts": 0,
+    "event_handlers": 0,
+    "forms": 0,
+    "frames": 0,
+    "stylesheets": 0,
+    "meta_refresh": 0,
+    "base_tags": 0,
+    "svg": 0,
+    "unsafe_links": 0,
+    "data_uris": 0,
+    "hidden": 0
+  },
+  "truncated": false
+}
+== safe html ==
+
+<h1>Your receipt</h1>
+<p>Order <b>#A-1001</b> placed on November 9, 2026.</p>
+<table border="0" cellpadding="6" style="border-collapse: collapse">
+<thead><tr><th align="left">Item</th><th>Qty</th><th align="right">Price</th></tr></thead>
+<tbody>
+<tr><td>Widget Pro</td><td>1</td><td align="right">$199.00</td></tr>
+<tr><td>Widget case</td><td>2</td><td align="right">$38.00</td></tr>
+<tr><td colspan="2"><b>Total</b></td><td align="right"><b>$237.00</b></td></tr>
+</tbody></table>
+<hr>
+<p>Questions? Reply to this mail or see <a href="https://help.widgets.example.com/orders" rel="noopener noreferrer nofollow">help.widgets.example.com</a>.</p>
+<pre>Tracking: EX123456789
+Carrier:  Example Post</pre>
+
+
+== blocks ==
+[
+  {
+    "type": "heading",
+    "level": 1,
+    "spans": [
+      {
+        "text": "Your receipt"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "Order "
+      },
+      {
+        "text": "#A-1001",
+        "bold": true
+      },
+      {
+        "text": " placed on November 9, 2026."
+      }
+    ]
+  },
+  {
+    "type": "table",
+    "rows": [
+      [
+        {
+          "spans": [
+            {
+              "text": "Item"
+            }
+          ],
+          "header": true,
+          "colspan": 1
+        },
+        {
+          "spans": [
+            {
+              "text": "Qty"
+            }
+          ],
+          "header": true,
+          "colspan": 1
+        },
+        {
+          "spans": [
+            {
+              "text": "Price"
+            }
+          ],
+          "header": true,
+          "colspan": 1
+        }
+      ],
+      [
+        {
+          "spans": [
+            {
+              "text": "Widget Pro"
+            }
+          ],
+          "colspan": 1
+        },
+        {
+          "spans": [
+            {
+              "text": "1"
+            }
+          ],
+          "colspan": 1
+        },
+        {
+          "spans": [
+            {
+              "text": "$199.00"
+            }
+          ],
+          "colspan": 1
+        }
+      ],
+      [
+        {
+          "spans": [
+            {
+              "text": "Widget case"
+            }
+          ],
+          "colspan": 1
+        },
+        {
+          "spans": [
+            {
+              "text": "2"
+            }
+          ],
+          "colspan": 1
+        },
+        {
+          "spans": [
+            {
+              "text": "$38.00"
+            }
+          ],
+          "colspan": 1
+        }
+      ],
+      [
+        {
+          "spans": [
+            {
+              "text": "Total",
+              "bold": true
+            }
+          ],
+          "colspan": 2
+        },
+        {
+          "spans": [
+            {
+              "text": "$237.00",
+              "bold": true
+            }
+          ],
+          "colspan": 1
+        }
+      ]
+    ],
+    "header_rows": 1
+  },
+  {
+    "type": "rule"
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "Questions? Reply to this mail or see "
+      },
+      {
+        "text": "help.widgets.example.com",
+        "link": {
+          "href": "https://help.widgets.example.com/orders"
+        }
+      },
+      {
+        "text": "."
+      }
+    ]
+  },
+  {
+    "type": "code",
+    "text": "Tracking: EX123456789\nCarrier:  Example Post"
+  }
+]
+== plain text ==
+Your receipt
+
+Order #A-1001 placed on November 9, 2026.
+
+Item | Qty | Price
+Widget Pro | 1 | $199.00
+Widget case | 2 | $38.00
+Total | $237.00
+
+---
+
+Questions? Reply to this mail or see help.widgets.example.com.
+
+Tracking: EX123456789
+Carrier:  Example Post
+== ai text ==
+Your receipt
+
+Order #A-1001 placed on November 9, 2026.
+
+Item | Qty | Price
+Widget Pro | 1 | $199.00
+Widget case | 2 | $38.00
+Total | $237.00
+
+---
+
+Questions? Reply to this mail or see help.widgets.example.com <https://help.widgets.example.com/orders>.
+
+Tracking: EX123456789
+Carrier:  Example Post
+== snippet ==
+Your receipt Order #A-1001 placed on November 9, 2026. Item | Qty | Price Widget Pro | 1 | $199.00 Widget case | 2 | $38.00 Total |…

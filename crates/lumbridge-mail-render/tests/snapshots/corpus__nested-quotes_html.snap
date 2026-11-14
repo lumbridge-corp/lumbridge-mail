@@ -1,0 +1,163 @@
+---
+source: crates/lumbridge-mail-render/tests/corpus.rs
+expression: render_all(name)
+---
+== report ==
+{
+  "remote_images": 0,
+  "remote_blocked": false,
+  "tracking_pixels": 0,
+  "remote_css": 0,
+  "cid_images": 0,
+  "cid_unresolved": 0,
+  "suspicious_links": [],
+  "removed": {
+    "scripts": 0,
+    "event_handlers": 0,
+    "forms": 0,
+    "frames": 0,
+    "stylesheets": 0,
+    "meta_refresh": 0,
+    "base_tags": 0,
+    "svg": 0,
+    "unsafe_links": 0,
+    "data_uris": 0,
+    "hidden": 0
+  },
+  "truncated": false
+}
+== safe html ==
+<p>Final answer: ship it.</p>
+<blockquote>Level one: are we shipping?
+<blockquote>Level two: tests are green.
+<blockquote>Level three: waiting on CI.
+<blockquote>Level four: who broke the build?
+<blockquote>Level five: the build is red.
+<blockquote>Level six: first message.</blockquote>
+</blockquote></blockquote></blockquote></blockquote></blockquote>
+
+== blocks ==
+[
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "Final answer: ship it."
+      }
+    ]
+  },
+  {
+    "type": "quote",
+    "depth": 1,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "spans": [
+          {
+            "text": "Level one: are we shipping?"
+          }
+        ]
+      },
+      {
+        "type": "quote",
+        "depth": 2,
+        "blocks": [
+          {
+            "type": "paragraph",
+            "spans": [
+              {
+                "text": "Level two: tests are green."
+              }
+            ]
+          },
+          {
+            "type": "quote",
+            "depth": 3,
+            "blocks": [
+              {
+                "type": "paragraph",
+                "spans": [
+                  {
+                    "text": "Level three: waiting on CI."
+                  }
+                ]
+              },
+              {
+                "type": "quote",
+                "depth": 4,
+                "blocks": [
+                  {
+                    "type": "paragraph",
+                    "spans": [
+                      {
+                        "text": "Level four: who broke the build?"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "quote",
+                    "depth": 5,
+                    "blocks": [
+                      {
+                        "type": "paragraph",
+                        "spans": [
+                          {
+                            "text": "Level five: the build is red."
+                          }
+                        ]
+                      },
+                      {
+                        "type": "quote",
+                        "depth": 6,
+                        "blocks": [
+                          {
+                            "type": "paragraph",
+                            "spans": [
+                              {
+                                "text": "Level six: first message."
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
+== plain text ==
+Final answer: ship it.
+
+> Level one: are we shipping?
+>
+> > Level two: tests are green.
+> >
+> > > Level three: waiting on CI.
+> > >
+> > > > Level four: who broke the build?
+> > > >
+> > > > > Level five: the build is red.
+> > > > >
+> > > > > > Level six: first message.
+== ai text ==
+Final answer: ship it.
+
+> Level one: are we shipping?
+>
+> > Level two: tests are green.
+> >
+> > > Level three: waiting on CI.
+> > >
+> > > > Level four: who broke the build?
+> > > >
+> > > > > Level five: the build is red.
+> > > > >
+> > > > > > Level six: first message.
+== snippet ==
+Final answer: ship it. > Level one: are we shipping? > > > Level two: tests are green. > > > > > Level three: waiting on CI. > > > > > > >…

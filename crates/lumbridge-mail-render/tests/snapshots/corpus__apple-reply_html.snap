@@ -1,0 +1,87 @@
+---
+source: crates/lumbridge-mail-render/tests/corpus.rs
+expression: render_all(name)
+---
+== report ==
+{
+  "remote_images": 0,
+  "remote_blocked": false,
+  "tracking_pixels": 0,
+  "remote_css": 0,
+  "cid_images": 0,
+  "cid_unresolved": 0,
+  "suspicious_links": [],
+  "removed": {
+    "scripts": 0,
+    "event_handlers": 0,
+    "forms": 0,
+    "frames": 0,
+    "stylesheets": 0,
+    "meta_refresh": 0,
+    "base_tags": 0,
+    "svg": 0,
+    "unsafe_links": 0,
+    "data_uris": 0,
+    "hidden": 0
+  },
+  "truncated": false
+}
+== safe html ==
+Sounds great — count me in.<div><br></div><div>Pat</div><div><br></div>
+== safe html: quoted ==
+<div><blockquote><div>On Nov 8, 2026, at 11:02, Quinn Example &lt;quinn@example.net&gt; wrote:</div><br><div><div>Board games at mine on Saturday, 7pm?</div></div></blockquote></div><br>
+
+== blocks ==
+[
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "Sounds great — count me in."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "Pat"
+      }
+    ]
+  }
+]
+== quoted ==
+[
+  {
+    "type": "quote",
+    "depth": 1,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "spans": [
+          {
+            "text": "On Nov 8, 2026, at 11:02, Quinn Example <quinn@example.net> wrote:"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "spans": [
+          {
+            "text": "Board games at mine on Saturday, 7pm?"
+          }
+        ]
+      }
+    ]
+  }
+]
+== plain text ==
+Sounds great — count me in.
+
+Pat
+== ai text ==
+Sounds great — count me in.
+
+Pat
+== snippet ==
+Sounds great — count me in. Pat

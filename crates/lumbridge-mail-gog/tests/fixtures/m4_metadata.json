@@ -1,0 +1,35 @@
+{
+  "id": "18f0a1b2c3d4e504",
+  "threadId": "18f0a1b2c3d4e504",
+  "labelIds": [
+    "INBOX",
+    "UNREAD",
+    "CATEGORY_SOCIAL"
+  ],
+  "snippet": "New comment on your post",
+  "payload": {
+    "partId": "",
+    "mimeType": "multipart/alternative",
+    "filename": "",
+    "headers": [
+      {
+        "name": "From",
+        "value": "Club <noreply@club.example>"
+      },
+      {
+        "name": "To",
+        "value": "test.user@example.com"
+      },
+      {
+        "name": "Subject",
+        "value": "New comment"
+      }
+    ],
+    "body": {
+      "size": 0
+    }
+  },
+  "sizeEstimate": 4200,
+  "historyId": "5100",
+  "internalDate": "1762848000000"
+}

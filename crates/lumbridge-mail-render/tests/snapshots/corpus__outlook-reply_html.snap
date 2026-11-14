@@ -1,0 +1,234 @@
+---
+source: crates/lumbridge-mail-render/tests/corpus.rs
+expression: render_all(name)
+---
+== report ==
+{
+  "remote_images": 0,
+  "remote_blocked": false,
+  "tracking_pixels": 0,
+  "remote_css": 0,
+  "cid_images": 0,
+  "cid_unresolved": 0,
+  "suspicious_links": [],
+  "removed": {
+    "scripts": 0,
+    "event_handlers": 0,
+    "forms": 0,
+    "frames": 0,
+    "stylesheets": 1,
+    "meta_refresh": 0,
+    "base_tags": 0,
+    "svg": 0,
+    "unsafe_links": 0,
+    "data_uris": 0,
+    "hidden": 0
+  },
+  "truncated": false
+}
+== safe html ==
+
+<div>
+<p>Hi Ivy,</p>
+<p>&nbsp;</p>
+<p>Numbers for Q3 below, as discussed:</p>
+<table border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse; border: none">
+<tbody><tr><td width="200" style="border: solid windowtext 1.0pt; padding: 0cm 5.4pt"><p><b>Region</b></p></td>
+<td width="120" style="border: solid windowtext 1.0pt; padding: 0cm 5.4pt"><p><b>Revenue</b></p></td></tr>
+<tr><td style="border: solid windowtext 1.0pt; padding: 0cm 5.4pt"><p>North</p></td>
+<td style="border: solid windowtext 1.0pt; padding: 0cm 5.4pt"><p>$1.2M</p></td></tr>
+<tr><td style="border: solid windowtext 1.0pt; padding: 0cm 5.4pt"><p>South</p></td>
+<td style="border: solid windowtext 1.0pt; padding: 0cm 5.4pt"><p>$0.9M</p></td></tr>
+</tbody></table>
+<p>&nbsp;</p>
+<p>Best regards,</p>
+</div>
+== safe html: signature ==
+<div><div><p><span style="font-size: 10.0pt">Jon Example | Finance Lead<br>Example Corp</span></p></div>
+<p>&nbsp;</p>
+</div>
+== safe html: quoted ==
+<div><div style="border: none; border-top: solid 1.0pt; padding: 3.0pt 0cm 0cm 0cm">
+<p><b>From:</b> Ivy Example &lt;ivy@example.com&gt; <br><b>Sent:</b> Monday, November 9, 2026 10:02 AM<br><b>To:</b> Jon Example &lt;jon@example.com&gt;<br><b>Subject:</b> Q3 numbers?</p>
+</div>
+<p>&nbsp;</p>
+<p>Hi Jon, could you send the Q3 regional numbers before Wednesday's review?</p>
+<p>Thanks, Ivy</p>
+</div>
+
+
+
+== blocks ==
+[
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "Hi Ivy,"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "Numbers for Q3 below, as discussed:"
+      }
+    ]
+  },
+  {
+    "type": "table",
+    "rows": [
+      [
+        {
+          "spans": [
+            {
+              "text": "Region",
+              "bold": true
+            }
+          ],
+          "colspan": 1
+        },
+        {
+          "spans": [
+            {
+              "text": "Revenue",
+              "bold": true
+            }
+          ],
+          "colspan": 1
+        }
+      ],
+      [
+        {
+          "spans": [
+            {
+              "text": "North"
+            }
+          ],
+          "colspan": 1
+        },
+        {
+          "spans": [
+            {
+              "text": "$1.2M"
+            }
+          ],
+          "colspan": 1
+        }
+      ],
+      [
+        {
+          "spans": [
+            {
+              "text": "South"
+            }
+          ],
+          "colspan": 1
+        },
+        {
+          "spans": [
+            {
+              "text": "$0.9M"
+            }
+          ],
+          "colspan": 1
+        }
+      ]
+    ],
+    "header_rows": 0
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "Best regards,"
+      }
+    ]
+  }
+]
+== signature ==
+[
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "Jon Example | Finance Lead\nExample Corp"
+      }
+    ]
+  }
+]
+== quoted ==
+[
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "From:",
+        "bold": true
+      },
+      {
+        "text": " Ivy Example <ivy@example.com>\n"
+      },
+      {
+        "text": "Sent:",
+        "bold": true
+      },
+      {
+        "text": " Monday, November 9, 2026 10:02 AM\n"
+      },
+      {
+        "text": "To:",
+        "bold": true
+      },
+      {
+        "text": " Jon Example <jon@example.com>\n"
+      },
+      {
+        "text": "Subject:",
+        "bold": true
+      },
+      {
+        "text": " Q3 numbers?"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "Hi Jon, could you send the Q3 regional numbers before Wednesday's review?"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "Thanks, Ivy"
+      }
+    ]
+  }
+]
+== plain text ==
+Hi Ivy,
+
+Numbers for Q3 below, as discussed:
+
+Region | Revenue
+North | $1.2M
+South | $0.9M
+
+Best regards,
+== ai text ==
+Hi Ivy,
+
+Numbers for Q3 below, as discussed:
+
+Region | Revenue
+North | $1.2M
+South | $0.9M
+
+Best regards,
+== snippet ==
+Hi Ivy, Numbers for Q3 below, as discussed: Region | Revenue North | $1.2M South | $0.9M Best regards,

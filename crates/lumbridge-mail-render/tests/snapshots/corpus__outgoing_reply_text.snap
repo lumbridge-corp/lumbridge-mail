@@ -1,0 +1,34 @@
+---
+source: crates/lumbridge-mail-render/tests/corpus.rs
+expression: reply.text
+---
+Sounds good, see you there.
+
+1. bring slides
+2. book room
+
+> a quote
+
+code block
+
+On Tue, Nov 10, 2026 at 3:04 PM, Ada Example <ada@example.com> wrote:
+> Great, I'll bring the slides.
+>
+> Two things:
+>
+> - the venue is here <https://maps.example.com/venue>
+> - parking is free after 6
+>
+> --
+>
+> Mo Example
+>
+> Product, Example Labs
+>
+> On Mon, Nov 9, 2026 at 4:20 PM Nia Example <nia@example.com> wrote:
+>
+> > Can you present on Thursday?
+> >
+> > On Mon, Nov 9, 2026 at 9:00 AM Mo Example <mo@example.com> wrote:
+> >
+> > > Happy to help with the meetup.

@@ -1,0 +1,26 @@
+[package]
+name = "lumbridge-mail-render"
+version = "0.1.0"
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+publish.workspace = true
+rust-version.workspace = true
+description = "Lumbridge Mail: received mail to safe HTML, a native block tree and clean text; drafts to MIME-ready text + HTML"
+
+[dependencies]
+lumbridge-mail-core = { path = "../lumbridge-mail-core" }
+ammonia = "4.2"
+html5ever = "0.40"
+markup5ever_rcdom = "0.40.1"
+pulldown-cmark = { version = "0.13", default-features = false }
+url = "2.5"
+idna = "1"
+encoding_rs = "0.8"
+base64 = "0.22"
+serde = { version = "1", features = ["derive"] }
+
+[dev-dependencies]
+serde_json = "1"
+insta = { version = "1.43", features = ["json"] }

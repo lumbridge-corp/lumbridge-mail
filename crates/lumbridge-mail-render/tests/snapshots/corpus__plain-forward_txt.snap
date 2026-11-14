@@ -1,0 +1,66 @@
+---
+source: crates/lumbridge-mail-render/tests/corpus.rs
+expression: render_all(name)
+---
+== blocks ==
+[
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "FYI, see below. Sent from my phone so short."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "---------- Forwarded message ---------\nFrom: Hal Example <hal@example.com>\nDate: Fri, Nov 6, 2026 at 8:00 AM\nSubject: Office closed Monday\nTo: team@example.com"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "The office is closed on Monday for maintenance.\nWork from home if you can."
+      }
+    ]
+  }
+]
+== signature ==
+[
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "Sent from my phone"
+      }
+    ]
+  }
+]
+== plain text ==
+FYI, see below. Sent from my phone so short.
+
+---------- Forwarded message ---------
+From: Hal Example <hal@example.com>
+Date: Fri, Nov 6, 2026 at 8:00 AM
+Subject: Office closed Monday
+To: team@example.com
+
+The office is closed on Monday for maintenance.
+Work from home if you can.
+== ai text ==
+FYI, see below. Sent from my phone so short.
+
+---------- Forwarded message ---------
+From: Hal Example <hal@example.com>
+Date: Fri, Nov 6, 2026 at 8:00 AM
+Subject: Office closed Monday
+To: team@example.com
+
+The office is closed on Monday for maintenance.
+Work from home if you can.
+== snippet ==
+FYI, see below. Sent from my phone so short. ---------- Forwarded message --------- From: Hal Example <hal@example.com> Date: Fri, Nov 6,…

@@ -1,0 +1,62 @@
+{
+  "id": "18f0a1b2c3d4e503",
+  "threadId": "18f0a1b2c3d4e502",
+  "labelIds": [
+    "INBOX",
+    "UNREAD",
+    "IMPORTANT",
+    "Label_11",
+    "CATEGORY_PERSONAL",
+    "STARRED"
+  ],
+  "snippet": "Can we move the garden meeting to Friday? I&#39;ll bring the seeds &amp; the plan.",
+  "payload": {
+    "partId": "",
+    "mimeType": "multipart/mixed",
+    "filename": "",
+    "headers": [
+      {
+        "name": "From",
+        "value": "\"Lovelace, Ada\" <Ada@Example.com>"
+      },
+      {
+        "name": "To",
+        "value": "Test User <test.user@example.com>, bob@example.org"
+      },
+      {
+        "name": "Cc",
+        "value": "=?UTF-8?B?w4lsaXNl?= <elise@example.net>"
+      },
+      {
+        "name": "Subject",
+        "value": "Re: Garden meeting =?UTF-8?Q?=E2=80=94_Friday?="
+      },
+      {
+        "name": "Date",
+        "value": "Mon, 10 Nov 2025 08:00:00 +0000"
+      },
+      {
+        "name": "Message-ID",
+        "value": "<CAF-ada-3@mail.example.com>"
+      },
+      {
+        "name": "In-Reply-To",
+        "value": "<CAF-test-2@mail.example.com>"
+      },
+      {
+        "name": "References",
+        "value": "<CAF-ada-1@mail.example.com> <CAF-test-2@mail.example.com>"
+      },
+      {
+        "name": "List-Unsubscribe",
+        "value": "<mailto:unsub@example.com>"
+      }
+    ],
+    "body": {
+      "size": 0
+    }
+  },
+  "sizeEstimate": 48213,
+  "historyId": "5003",
+  "internalDate": "1762761600000"
+}

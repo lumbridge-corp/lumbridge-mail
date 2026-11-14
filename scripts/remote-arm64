@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# Build the headless parts (lumbridge-maild, lbmail) for 64-bit ARM Linux on the build machine, and fetch
+# them back here. Never compiles on this machine.
+#
+#   scripts/remote-arm64 <name> [extra cargo args...]     e.g.  scripts/remote-arm64 remote
+#
+# Target aarch64-unknown-linux-musl: static binaries, no glibc floor, nothing to install on the server.
+# Cross-linked with zig (cargo-zigbuild); the C parts (SQLite via rusqlite's bundled build, libdbus for
+# the keyring via the `vendored-dbus` feature, aws-lc/ring under rustls) are compiled by zig cc. The GPUI
+# app is not built: a server runs the daemon only.
+#
+# Result: target/aarch64-unknown-linux-musl/release/{lumbridge-maild,lbmail} in this checkout, ready for
+# deploy/install-server.sh <host>.
+#
+#   TARGET   default aarch64-unknown-linux-musl (aarch64-unknown-linux-gnu.2.35 also works with zigbuild)
+set -euo pipefail
+name=${1:?usage: scripts/remote-arm64 <name> [cargo args...]}; shift
+target=${TARGET:-aarch64-unknown-linux-musl}
+here=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+root=$(git -C "$here" rev-parse --show-toplevel)
+cd "$root"
+host=${LBMAIL_BUILD_HOST:?set LBMAIL_BUILD_HOST to the ssh host that builds}
+triple=${target%%.*}   # zigbuild's glibc suffix (…gnu.2.35) is not part of the directory name
+
+# The Rust standard library for the target (once; rustup is a no-op when it is there).
+ssh -o BatchMode=yes "$host" 'export PATH=$HOME/.cargo/bin:$PATH; rustup target list --installed | grep -qx '"$triple"' || rustup target add '"$triple" </dev/null
+"$here/remote" "$name" zigbuild --release --target "$target" -p lumbridge-maild --features vendored-dbus "$@"
+out="$root/target/$triple/release"
+"$here/remote" "$name" --fetch "$out" "target/$triple/release/lumbridge-maild" "target/$triple/release/lbmail"
+ls -l "$out/lumbridge-maild" "$out/lbmail"
+file "$out/lumbridge-maild" "$out/lbmail" 2>/dev/null || true

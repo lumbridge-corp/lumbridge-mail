@@ -1,0 +1,99 @@
+{
+  "labels": [
+    {
+      "id": "INBOX",
+      "name": "INBOX",
+      "type": "system",
+      "messageListVisibility": "show",
+      "labelListVisibility": "labelShow"
+    },
+    {
+      "id": "SENT",
+      "name": "SENT",
+      "type": "system",
+      "messageListVisibility": "show",
+      "labelListVisibility": "labelShow"
+    },
+    {
+      "id": "DRAFT",
+      "name": "DRAFT",
+      "type": "system",
+      "messageListVisibility": "show",
+      "labelListVisibility": "labelShow"
+    },
+    {
+      "id": "TRASH",
+      "name": "TRASH",
+      "type": "system",
+      "messageListVisibility": "show",
+      "labelListVisibility": "labelShow"
+    },
+    {
+      "id": "SPAM",
+      "name": "SPAM",
+      "type": "system",
+      "messageListVisibility": "show",
+      "labelListVisibility": "labelShow"
+    },
+    {
+      "id": "STARRED",
+      "name": "STARRED",
+      "type": "system",
+      "messageListVisibility": "show",
+      "labelListVisibility": "labelShow"
+    },
+    {
+      "id": "IMPORTANT",
+      "name": "IMPORTANT",
+      "type": "system",
+      "messageListVisibility": "show",
+      "labelListVisibility": "labelShow"
+    },
+    {
+      "id": "UNREAD",
+      "name": "UNREAD",
+      "type": "system",
+      "messageListVisibility": "show",
+      "labelListVisibility": "labelShow"
+    },
+    {
+      "id": "CHAT",
+      "name": "CHAT",
+      "type": "system",
+      "messageListVisibility": "show",
+      "labelListVisibility": "labelShow"
+    },
+    {
+      "id": "CATEGORY_SOCIAL",
+      "name": "CATEGORY_SOCIAL",
+      "type": "system",
+      "messageListVisibility": "show",
+      "labelListVisibility": "labelShow"
+    },
+    {
+      "id": "CATEGORY_PERSONAL",
+      "name": "CATEGORY_PERSONAL",
+      "type": "system",
+      "messageListVisibility": "show",
+      "labelListVisibility": "labelShow"
+    },
+    {
+      "id": "Label_11",
+      "name": "Projects/Garden",
+      "type": "user",
+      "messageListVisibility": "show",
+      "labelListVisibility": "labelShow",
+      "color": {
+        "textColor": "#000000",
+        "backgroundColor": "#16a766"
+      }
+    },
+    {
+      "id": "Label_12",
+      "name": "Receipts",
+      "type": "user",
+      "messageListVisibility": "show",
+      "labelListVisibility": "labelHide"
+    }
+  ]
+}

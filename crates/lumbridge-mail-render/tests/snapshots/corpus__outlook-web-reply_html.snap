@@ -1,0 +1,101 @@
+---
+source: crates/lumbridge-mail-render/tests/corpus.rs
+expression: render_all(name)
+---
+== report ==
+{
+  "remote_images": 0,
+  "remote_blocked": false,
+  "tracking_pixels": 0,
+  "remote_css": 0,
+  "cid_images": 0,
+  "cid_unresolved": 0,
+  "suspicious_links": [],
+  "removed": {
+    "scripts": 0,
+    "event_handlers": 0,
+    "forms": 0,
+    "frames": 0,
+    "stylesheets": 1,
+    "meta_refresh": 0,
+    "base_tags": 0,
+    "svg": 0,
+    "unsafe_links": 0,
+    "data_uris": 0,
+    "hidden": 0
+  },
+  "truncated": false
+}
+== safe html ==
+
+<div style="font-family: Aptos, sans-serif; font-size: 12pt">Works for me, see you then.</div>
+
+== safe html: quoted ==
+<div></div>
+<hr style="display: inline-block; width: 98%">
+<div dir="ltr"><font face="Calibri, sans-serif" style="font-size: 11pt"><b>From:</b> Kai Example &lt;kai@example.org&gt;<br><b>Sent:</b> Tuesday, November 10, 2026 09:15<br><b>To:</b> Lee Example &lt;lee@example.org&gt;<br><b>Subject:</b> Standup moved</font>
+<div>&nbsp;</div></div>
+<div><p>Standup moves to 10:30 tomorrow.</p></div>
+
+
+== blocks ==
+[
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "Works for me, see you then."
+      }
+    ]
+  }
+]
+== quoted ==
+[
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "From:",
+        "bold": true
+      },
+      {
+        "text": " Kai Example <kai@example.org>\n"
+      },
+      {
+        "text": "Sent:",
+        "bold": true
+      },
+      {
+        "text": " Tuesday, November 10, 2026 09:15\n"
+      },
+      {
+        "text": "To:",
+        "bold": true
+      },
+      {
+        "text": " Lee Example <lee@example.org>\n"
+      },
+      {
+        "text": "Subject:",
+        "bold": true
+      },
+      {
+        "text": " Standup moved"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "Standup moves to 10:30 tomorrow."
+      }
+    ]
+  }
+]
+== plain text ==
+Works for me, see you then.
+== ai text ==
+Works for me, see you then.
+== snippet ==
+Works for me, see you then.

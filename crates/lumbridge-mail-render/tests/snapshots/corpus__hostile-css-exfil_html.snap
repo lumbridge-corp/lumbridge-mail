@@ -1,0 +1,89 @@
+---
+source: crates/lumbridge-mail-render/tests/corpus.rs
+expression: render_all(name)
+---
+== report ==
+{
+  "remote_images": 0,
+  "remote_blocked": false,
+  "tracking_pixels": 1,
+  "remote_css": 8,
+  "cid_images": 0,
+  "cid_unresolved": 0,
+  "suspicious_links": [],
+  "removed": {
+    "scripts": 0,
+    "event_handlers": 0,
+    "forms": 0,
+    "frames": 0,
+    "stylesheets": 2,
+    "meta_refresh": 0,
+    "base_tags": 0,
+    "svg": 0,
+    "unsafe_links": 0,
+    "data_uris": 0,
+    "hidden": 0
+  },
+  "truncated": false
+}
+== safe html ==
+
+<p>Inline background</p>
+<div style="font-family: x">Tracker in CSS</div>
+<p>Colours only kept on request</p>
+<p>CSS escape trick</p>
+
+
+== blocks ==
+[
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "Inline background"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "Tracker in CSS"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "Colours only kept on request"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "CSS escape trick"
+      }
+    ]
+  }
+]
+== plain text ==
+Inline background
+
+Tracker in CSS
+
+Colours only kept on request
+
+CSS escape trick
+== ai text ==
+Inline background
+
+Tracker in CSS
+
+Colours only kept on request
+
+CSS escape trick
+== snippet ==
+Inline background Tracker in CSS Colours only kept on request CSS escape trick

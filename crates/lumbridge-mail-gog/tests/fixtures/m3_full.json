@@ -1,0 +1,163 @@
+{
+  "id": "18f0a1b2c3d4e503",
+  "threadId": "18f0a1b2c3d4e502",
+  "labelIds": [
+    "INBOX",
+    "UNREAD"
+  ],
+  "snippet": "Can we move",
+  "payload": {
+    "partId": "",
+    "mimeType": "multipart/mixed",
+    "filename": "",
+    "headers": [
+      {
+        "name": "From",
+        "value": "\"Lovelace, Ada\" <Ada@Example.com>"
+      },
+      {
+        "name": "To",
+        "value": "Test User <test.user@example.com>, bob@example.org"
+      },
+      {
+        "name": "Cc",
+        "value": "=?UTF-8?B?w4lsaXNl?= <elise@example.net>"
+      },
+      {
+        "name": "Subject",
+        "value": "Re: Garden meeting =?UTF-8?Q?=E2=80=94_Friday?="
+      },
+      {
+        "name": "Date",
+        "value": "Mon, 10 Nov 2025 08:00:00 +0000"
+      },
+      {
+        "name": "Message-ID",
+        "value": "<CAF-ada-3@mail.example.com>"
+      },
+      {
+        "name": "In-Reply-To",
+        "value": "<CAF-test-2@mail.example.com>"
+      },
+      {
+        "name": "References",
+        "value": "<CAF-ada-1@mail.example.com> <CAF-test-2@mail.example.com>"
+      },
+      {
+        "name": "List-Unsubscribe",
+        "value": "<mailto:unsub@example.com>"
+      }
+    ],
+    "body": {
+      "size": 0
+    },
+    "parts": [
+      {
+        "partId": "0",
+        "mimeType": "multipart/alternative",
+        "filename": "",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": "multipart/alternative; boundary=\"b2\""
+          }
+        ],
+        "body": {
+          "size": 0
+        },
+        "parts": [
+          {
+            "partId": "0.0",
+            "mimeType": "text/plain",
+            "filename": "",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "text/plain; charset=\"UTF-8\""
+              }
+            ],
+            "body": {
+              "size": 66,
+              "data": "Q2FuIHdlIG1vdmUgdGhlIGdhcmRlbiBtZWV0aW5nIHRvIEZyaWRheT8NCkknbGwgYnJpbmcgdGhlIHNlZWRzLg0K"
+            }
+          },
+          {
+            "partId": "0.1",
+            "mimeType": "text/html",
+            "filename": "",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "text/html; charset=UTF-8"
+              }
+            ],
+            "body": {
+              "size": 55,
+              "data": "PHA-Q2FuIHdlIG1vdmUgdGhlIGdhcmRlbiBtZWV0aW5nIHRvIDxiPkZyaWRheTwvYj4_PC9wPg"
+            }
+          }
+        ]
+      },
+      {
+        "partId": "1",
+        "mimeType": "text/plain",
+        "filename": "",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": "text/plain; charset=iso-8859-1"
+          }
+        ],
+        "body": {
+          "size": 20,
+          "data": "R3L832UgYXVzIGRlbSBHYXJ0ZW4"
+        }
+      },
+      {
+        "partId": "2",
+        "mimeType": "application/pdf",
+        "filename": "garden-plan.pdf",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": "application/pdf; name=\"garden-plan.pdf\""
+          },
+          {
+            "name": "Content-Disposition",
+            "value": "attachment; filename=\"garden-plan.pdf\""
+          }
+        ],
+        "body": {
+          "attachmentId": "ANGjdJ8-made-up-attachment-id",
+          "size": 40960
+        }
+      },
+      {
+        "partId": "3",
+        "mimeType": "image/png",
+        "filename": "",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": "image/png"
+          },
+          {
+            "name": "Content-ID",
+            "value": "<seed-photo@example.com>"
+          },
+          {
+            "name": "Content-Disposition",
+            "value": "inline"
+          }
+        ],
+        "body": {
+          "size": 11,
+          "data": "iVBORw0KGgoBAgM"
+        }
+      }
+    ]
+  },
+  "sizeEstimate": 48213,
+  "historyId": "5003",
+  "internalDate": "1762761600000"
+}

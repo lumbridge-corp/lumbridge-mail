@@ -1,0 +1,27 @@
+# Accepted hits of scripts/scrub-check. One entry per line: <path glob>:<regex>
+# The matching text is cut from lines of matching files before the check, so
+# an entry allows exactly that text and nothing else on the line.
+# Every entry has its reason above it. Keep the list short.
+
+# Made-up addresses in tests and docs that spell the example domains with capitals,
+# to test that addresses compare without case.
+crates/*:[A-Za-z0-9._%+-]+@([Ee][Xx][Aa][Mm][Pp][Ll][Ee]\.[Cc][Oo][Mm]|[A-Za-z0-9.-]+\.example(\.test)?)\b
+
+# Public mail providers and well-known senders, used as test input for server
+# discovery (fastmail, gmail, proton, outlook) and for the sensitive-mail and
+# notification rules (banks, government, GitHub, x.com). No real person's address.
+crates/*:[A-Za-z0-9._%+-]+@((email\.)?chase\.co(m|\.uk)|dmv\.ca\.gov|irs\.gov|mercury\.com|github\.com|x\.com|otherwise\.com|[Ff]astmail\.com|GMAIL\.com|proton\.me|outlook\.com)\b
+
+# Made-up credentials for the fake IMAP, SMTP and Zoho servers in tests, and a doc example.
+crates/lumbridge-mail-imap/*:password: "(hunter2(-secret)?|wrong-secret-pw|from the keyring)"
+crates/lumbridge-mail-imap/*:token: "made-up-oauth-token"
+crates/lumbridge-mail-zoho/tests/provider.rs:access_token = "fake-access-[a-z-]+"
+crates/lumbridge-maild/tests/zoho.rs:access_token = "fake-access-[a-z-]+"
+
+# Test vectors: which hosts count as private or loopback, and a stand-in home folder.
+crates/lumbridge-mail-app/src/remote.rs:"(10\.1\.2\.3|192\.168\.0\.1|100\.64\.0\.1)"
+crates/lumbridge-mail-imap/src/config.rs:"10\.0\.0\.1"
+crates/lumbridge-mail-core/src/paths.rs:/home/x\b
+
+# An HTML test fixture: numeric entities that spell a javascript: URL. The text only looks like a name.
+crates/lumbridge-mail-render/tests/fixtures/hostile-active.html:&#106;&#97;&#118;&#97;&#115;&#99;&#114;&#105;&#112;&#116;&#58;

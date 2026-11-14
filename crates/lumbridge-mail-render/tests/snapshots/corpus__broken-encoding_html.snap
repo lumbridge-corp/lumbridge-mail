@@ -1,0 +1,76 @@
+---
+source: crates/lumbridge-mail-render/tests/corpus.rs
+expression: render_all(name)
+---
+== report ==
+{
+  "remote_images": 0,
+  "remote_blocked": false,
+  "tracking_pixels": 0,
+  "remote_css": 0,
+  "cid_images": 0,
+  "cid_unresolved": 0,
+  "suspicious_links": [],
+  "removed": {
+    "scripts": 0,
+    "event_handlers": 0,
+    "forms": 0,
+    "frames": 0,
+    "stylesheets": 0,
+    "meta_refresh": 0,
+    "base_tags": 0,
+    "svg": 0,
+    "unsafe_links": 0,
+    "data_uris": 0,
+    "hidden": 0
+  },
+  "truncated": false
+}
+== safe html ==
+
+<p>Café crème — the menu for déjeuner is attached.</p>
+<p>Stray NUL: here, bell  there, and a BOM  inside.</p>
+<p>Replacement chars from a bad decode: caf�, na�ve.</p>
+
+
+== blocks ==
+[
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "Café crème — the menu for déjeuner is attached."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "Stray NUL: here, bell there, and a BOM inside."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "Replacement chars from a bad decode: caf�, na�ve."
+      }
+    ]
+  }
+]
+== plain text ==
+Café crème — the menu for déjeuner is attached.
+
+Stray NUL: here, bell there, and a BOM inside.
+
+Replacement chars from a bad decode: caf�, na�ve.
+== ai text ==
+Café crème — the menu for déjeuner is attached.
+
+Stray NUL: here, bell there, and a BOM inside.
+
+Replacement chars from a bad decode: caf�, na�ve.
+== snippet ==
+Café crème — the menu for déjeuner is attached. Stray NUL: here, bell there, and a BOM inside. Replacement chars from a bad decode: caf�,…

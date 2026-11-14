@@ -1,0 +1,202 @@
+---
+source: crates/lumbridge-mail-render/tests/corpus.rs
+expression: render_all(name)
+---
+== report ==
+{
+  "remote_images": 0,
+  "remote_blocked": false,
+  "tracking_pixels": 0,
+  "remote_css": 0,
+  "cid_images": 0,
+  "cid_unresolved": 0,
+  "suspicious_links": [],
+  "removed": {
+    "scripts": 0,
+    "event_handlers": 0,
+    "forms": 0,
+    "frames": 0,
+    "stylesheets": 0,
+    "meta_refresh": 0,
+    "base_tags": 0,
+    "svg": 0,
+    "unsafe_links": 0,
+    "data_uris": 0,
+    "hidden": 0
+  },
+  "truncated": false
+}
+== safe html ==
+<div dir="ltr">Great, I'll bring the <b>slides</b>.<div><br></div><div>Two things:</div><ul><li>the venue is <a href="https://maps.example.com/venue" rel="noopener noreferrer nofollow">here</a></li><li>parking is free after 6</li></ul><div><br><div><br></div></div></div>
+== safe html: signature ==
+<div dir="ltr"><div><span>-- </span><br><div dir="ltr"><div dir="ltr">Mo Example<div>Product, Example Labs</div></div></div></div></div><br>
+== safe html: quoted ==
+<div><div dir="ltr">On Mon, Nov 9, 2026 at 4:20 PM Nia Example &lt;<a href="mailto:nia@example.com" rel="noopener noreferrer nofollow">nia@example.com</a>&gt; wrote:<br></div><blockquote style="margin: 0px 0px 0px 0.8ex; border-left: 1px solid; padding-left: 1ex"><div dir="ltr">Can you present on Thursday?<br><div><div dir="ltr">On Mon, Nov 9, 2026 at 9:00 AM Mo Example &lt;<a href="mailto:mo@example.com" rel="noopener noreferrer nofollow">mo@example.com</a>&gt; wrote:<br></div><blockquote style="margin: 0px 0px 0px 0.8ex; border-left: 1px solid; padding-left: 1ex">Happy to help with the meetup.</blockquote></div></div></blockquote></div>
+
+== blocks ==
+[
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "Great, I'll bring the "
+      },
+      {
+        "text": "slides",
+        "bold": true
+      },
+      {
+        "text": "."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "Two things:"
+      }
+    ]
+  },
+  {
+    "type": "list",
+    "ordered": false,
+    "start": 1,
+    "items": [
+      [
+        {
+          "type": "paragraph",
+          "spans": [
+            {
+              "text": "the venue is "
+            },
+            {
+              "text": "here",
+              "link": {
+                "href": "https://maps.example.com/venue"
+              }
+            }
+          ]
+        }
+      ],
+      [
+        {
+          "type": "paragraph",
+          "spans": [
+            {
+              "text": "parking is free after 6"
+            }
+          ]
+        }
+      ]
+    ]
+  }
+]
+== signature ==
+[
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "--"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "Mo Example"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "Product, Example Labs"
+      }
+    ]
+  }
+]
+== quoted ==
+[
+  {
+    "type": "paragraph",
+    "spans": [
+      {
+        "text": "On Mon, Nov 9, 2026 at 4:20 PM Nia Example <"
+      },
+      {
+        "text": "nia@example.com",
+        "link": {
+          "href": "mailto:nia@example.com"
+        }
+      },
+      {
+        "text": "> wrote:"
+      }
+    ]
+  },
+  {
+    "type": "quote",
+    "depth": 1,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "spans": [
+          {
+            "text": "Can you present on Thursday?"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "spans": [
+          {
+            "text": "On Mon, Nov 9, 2026 at 9:00 AM Mo Example <"
+          },
+          {
+            "text": "mo@example.com",
+            "link": {
+              "href": "mailto:mo@example.com"
+            }
+          },
+          {
+            "text": "> wrote:"
+          }
+        ]
+      },
+      {
+        "type": "quote",
+        "depth": 2,
+        "blocks": [
+          {
+            "type": "paragraph",
+            "spans": [
+              {
+                "text": "Happy to help with the meetup."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
+== plain text ==
+Great, I'll bring the slides.
+
+Two things:
+
+- the venue is here
+- parking is free after 6
+== ai text ==
+Great, I'll bring the slides.
+
+Two things:
+
+- the venue is here <https://maps.example.com/venue>
+- parking is free after 6
+== snippet ==
+Great, I'll bring the slides. Two things: - the venue is here - parking is free after 6

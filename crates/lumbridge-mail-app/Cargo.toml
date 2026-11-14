@@ -1,0 +1,60 @@
+[package]
+name = "lumbridge-mail-app"
+version = "0.1.0"
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+publish.workspace = true
+description = "Lumbridge Mail: the desktop GPUI app (binary `lumbridge-mail`)"
+
+[[bin]]
+name = "lumbridge-mail"
+path = "src/main.rs"
+
+[lib]
+name = "lumbridge_mail_app"
+path = "src/lib.rs"
+
+[dependencies]
+lumbridge-mail-core = { path = "../lumbridge-mail-core" }
+lumbridge-mail-render = { path = "../lumbridge-mail-render" }
+# GPUI Kit 0.9.1 carries the gpui-pre =0.3.12 snapshot family (exact pins inside).
+gpui-kit = "=0.9.1"
+async-trait = "0.1"
+async-channel = "2"
+futures = "0.3"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+# The `[daemon]` remote keys of config.toml (a daemon on another machine, over ssh).
+toml = "0.9"
+parking_lot = "0.12"
+# Peer credentials of the daemon's socket (it must be our own user before we show the person token).
+libc = "0.2"
+base64 = "0.22"
+# Local time zone for dates (reads the OS zone; no network).
+chrono = { version = "0.4", default-features = false, features = ["clock"] }
+# Remote images, only after the user presses "Load images": no cookies, no referrer, capped, timed out.
+ureq = { version = "2.12", default-features = false, features = ["tls"] }
+# Checks image headers (format, size) before GPUI decodes anything a sender chose.
+image = { version = "0.25", default-features = false, features = ["png", "jpeg", "gif", "webp"] }
+
+# The native titlebar's appearance follows the app's theme (theme::native_appearance). Already in the
+# tree through gpui-pre-macos: no new crates.
+[target.'cfg(target_os = "macos")'.dependencies]
+objc2 = "0.6"
+objc2-app-kit = { version = "0.3.2", default-features = false, features = ["std", "NSAppearance", "NSApplication", "NSResponder"] }
+
+[dev-dependencies]
+gpui-kit = { version = "=0.9.1", features = ["test-support"] }
+tempfile = "3"
+
+[[test]]
+name = "screenshots"
+path = "tests/screenshots.rs"
+harness = false
+
+[[test]]
+name = "behaviour"
+path = "tests/behaviour.rs"
+harness = false

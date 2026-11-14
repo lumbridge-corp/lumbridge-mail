@@ -1,0 +1,38 @@
+{
+  "id": "18f0a1b2c3d4e502",
+  "threadId": "18f0a1b2c3d4e502",
+  "labelIds": [
+    "SENT",
+    "STARRED"
+  ],
+  "snippet": "Sure, Thursday works.",
+  "payload": {
+    "partId": "",
+    "mimeType": "multipart/alternative",
+    "filename": "",
+    "headers": [
+      {
+        "name": "From",
+        "value": "Test User <test.user@example.com>"
+      },
+      {
+        "name": "To",
+        "value": "Ada <ada@example.com>"
+      },
+      {
+        "name": "Subject",
+        "value": "Re: Garden meeting"
+      },
+      {
+        "name": "Message-ID",
+        "value": "<CAF-test-2@mail.example.com>"
+      }
+    ],
+    "body": {
+      "size": 0
+    }
+  },
+  "sizeEstimate": 4200,
+  "historyId": "5101",
+  "internalDate": "1762675200000"
+}

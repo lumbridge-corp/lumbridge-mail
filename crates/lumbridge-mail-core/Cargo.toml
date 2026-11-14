@@ -1,0 +1,19 @@
+[package]
+name = "lumbridge-mail-core"
+version = "0.1.0"
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+publish.workspace = true
+description = "Lumbridge Mail: the mail model, provider trait, safety rules and daemon protocol"
+
+[dependencies]
+async-trait = "0.1"
+# Word-boundary matching for the sensitive-mail rules (pure, no I/O).
+regex = "1"
+serde = { version = "1", features = ["derive"] }
+thiserror = "2"
+
+[dev-dependencies]
+serde_json = "1"
