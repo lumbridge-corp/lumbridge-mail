@@ -1,3 +1,5 @@
+![Lumbridge Mail: Agents draft. Only a person sends.](docs/assets/banner.jpg)
+
 # Lumbridge Mail
 
 A mail client with a daemon, a desktop app (Rust and GPUI) and a command line. It is for people who want
